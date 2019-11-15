@@ -9,8 +9,9 @@
 /* Begin PBXBuildFile section */
 		27048BE7237F347100F05ABB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27048BE1237F347100F05ABB /* LaunchScreen.storyboard */; };
 		27048BE8237F347100F05ABB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27048BE2237F347100F05ABB /* Assets.xcassets */; };
-		27048BEA237F347100F05ABB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27048BE5237F347100F05ABB /* ViewController.swift */; };
+		27048BEA237F347100F05ABB /* SlideshowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27048BE5237F347100F05ABB /* SlideshowViewController.swift */; };
 		27048BEB237F347100F05ABB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27048BE6237F347100F05ABB /* AppDelegate.swift */; };
+		27048BEE237F4BD800F05ABB /* SlideshowContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27048BED237F4BD800F05ABB /* SlideshowContentViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,8 +19,9 @@
 		27048BE1237F347100F05ABB /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		27048BE2237F347100F05ABB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		27048BE3237F347100F05ABB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		27048BE5237F347100F05ABB /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		27048BE5237F347100F05ABB /* SlideshowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideshowViewController.swift; sourceTree = "<group>"; };
 		27048BE6237F347100F05ABB /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		27048BED237F4BD800F05ABB /* SlideshowContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideshowContentViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,7 +74,8 @@
 			isa = PBXGroup;
 			children = (
 				27048BE6237F347100F05ABB /* AppDelegate.swift */,
-				27048BE5237F347100F05ABB /* ViewController.swift */,
+				27048BE5237F347100F05ABB /* SlideshowViewController.swift */,
+				27048BED237F4BD800F05ABB /* SlideshowContentViewController.swift */,
 			);
 			path = Code;
 			sourceTree = "<group>";
@@ -169,8 +172,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27048BEE237F4BD800F05ABB /* SlideshowContentViewController.swift in Sources */,
 				27048BEB237F347100F05ABB /* AppDelegate.swift in Sources */,
-				27048BEA237F347100F05ABB /* ViewController.swift in Sources */,
+				27048BEA237F347100F05ABB /* SlideshowViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,7 +302,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VSAP3MLLCD;
 				INFOPLIST_FILE = Junction2019/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -318,7 +322,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VSAP3MLLCD;
 				INFOPLIST_FILE = Junction2019/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
