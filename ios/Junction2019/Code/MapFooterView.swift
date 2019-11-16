@@ -11,6 +11,7 @@ import UIKit
 class MapFooterView: UIView {
 	let sliderContainer = UIView()
 	let slider = UISlider()
+	let timeScaleControl = UISegmentedControl(items: ["Monthly", "Daily", "Hourly"])
 	
 	var sliderCallback: ((Float) -> Void)?
 	
@@ -25,14 +26,18 @@ class MapFooterView: UIView {
 		slider.setThumbImage(UIImage(named: "knob"), for: .normal)
 		slider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
 		
+		timeScaleControl.selectedSegmentIndex = 0
+		
 		effectView.translatesAutoresizingMaskIntoConstraints = false
 		addSubview(effectView)
 		
 		sliderContainer.translatesAutoresizingMaskIntoConstraints = false
 		effectView.contentView.addSubview(sliderContainer)
 		
-		slider.translatesAutoresizingMaskIntoConstraints = false
-		effectView.contentView.addSubview(slider)
+		[slider, timeScaleControl].forEach {
+			$0.translatesAutoresizingMaskIntoConstraints = false
+			effectView.contentView.addSubview($0)
+		}
 		
 		NSLayoutConstraint.activate([
 			effectView.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -43,11 +48,14 @@ class MapFooterView: UIView {
 			sliderContainer.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
 			sliderContainer.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
 			sliderContainer.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
-			sliderContainer.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor),
 			
 			slider.leadingAnchor.constraint(equalTo: sliderContainer.leadingAnchor, constant: -30),
 			slider.trailingAnchor.constraint(equalTo: sliderContainer.trailingAnchor, constant: 30),
-			slider.centerYAnchor.constraint(equalTo: sliderContainer.topAnchor)
+			slider.centerYAnchor.constraint(equalTo: sliderContainer.topAnchor),
+			
+			timeScaleControl.centerXAnchor.constraint(equalTo: centerXAnchor),
+			timeScaleControl.topAnchor.constraint(equalTo: sliderContainer.bottomAnchor, constant: 32),
+			timeScaleControl.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor)
 		])
 		
 		let monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
