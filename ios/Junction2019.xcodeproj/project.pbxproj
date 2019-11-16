@@ -15,6 +15,7 @@
 		274C85AC237F507100BEF7EB /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274C85AB237F507100BEF7EB /* WelcomeViewController.swift */; };
 		274C85AE238003F300BEF7EB /* BigButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274C85AD238003F300BEF7EB /* BigButton.swift */; };
 		274C85B0238006C200BEF7EB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274C85AF238006C200BEF7EB /* MapViewController.swift */; };
+		B3FFFD470648E9A6738B9808 /* Pods_Junction2019.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7F1F88984BCE2D7CACEF11B /* Pods_Junction2019.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,9 @@
 		274C85AB237F507100BEF7EB /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		274C85AD238003F300BEF7EB /* BigButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigButton.swift; sourceTree = "<group>"; };
 		274C85AF238006C200BEF7EB /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		C4C4368C8E6832C54025CC56 /* Pods-Junction2019.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Junction2019.release.xcconfig"; path = "Target Support Files/Pods-Junction2019/Pods-Junction2019.release.xcconfig"; sourceTree = "<group>"; };
+		F7F1F88984BCE2D7CACEF11B /* Pods_Junction2019.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Junction2019.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBD0A5EA91AAE7D8E47B41FC /* Pods-Junction2019.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Junction2019.debug.xcconfig"; path = "Target Support Files/Pods-Junction2019/Pods-Junction2019.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,17 +39,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3FFFD470648E9A6738B9808 /* Pods_Junction2019.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		232DEA7B48352FC1AF3A1592 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FBD0A5EA91AAE7D8E47B41FC /* Pods-Junction2019.debug.xcconfig */,
+				C4C4368C8E6832C54025CC56 /* Pods-Junction2019.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		27048BC0237F242C00F05ABB = {
 			isa = PBXGroup;
 			children = (
 				27048BCB237F242C00F05ABB /* Junction2019 */,
 				27048BCA237F242C00F05ABB /* Products */,
+				232DEA7B48352FC1AF3A1592 /* Pods */,
+				4053E89B12723DD663EBADF1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -89,6 +106,14 @@
 			path = Code;
 			sourceTree = "<group>";
 		};
+		4053E89B12723DD663EBADF1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F7F1F88984BCE2D7CACEF11B /* Pods_Junction2019.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -96,10 +121,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 27048BDD237F242F00F05ABB /* Build configuration list for PBXNativeTarget "Junction2019" */;
 			buildPhases = (
+				B9717BC79AAEE9CA1AFE8ADB /* [CP] Check Pods Manifest.lock */,
 				27048BC5237F242C00F05ABB /* Sources */,
 				27048BC6237F242C00F05ABB /* Frameworks */,
 				27048BC7237F242C00F05ABB /* Resources */,
 				27048BEC237F35A000F05ABB /* Set Build Number */,
+				A29D8B2BE21F1E4798ABD3F0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -173,6 +200,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "${PROJECT_DIR}/Junction2019/Scripts/set-build.sh\n";
+		};
+		A29D8B2BE21F1E4798ABD3F0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Junction2019/Pods-Junction2019-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Junction2019/Pods-Junction2019-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Junction2019/Pods-Junction2019-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B9717BC79AAEE9CA1AFE8ADB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Junction2019-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -309,6 +375,7 @@
 		};
 		27048BDE237F242F00F05ABB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FBD0A5EA91AAE7D8E47B41FC /* Pods-Junction2019.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -329,6 +396,7 @@
 		};
 		27048BDF237F242F00F05ABB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C4C4368C8E6832C54025CC56 /* Pods-Junction2019.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
