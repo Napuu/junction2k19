@@ -28,6 +28,26 @@ class MapViewController: UIViewController {
 			mapView.topAnchor.constraint(equalTo: view.topAnchor),
 			mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
 		])
+		
+		let singleTap = UITapGestureRecognizer(target: self, action: #selector(handleMapTap))
+		for recognizer in mapView.gestureRecognizers! where recognizer is UITapGestureRecognizer {
+			singleTap.require(toFail: recognizer)
+		}
+		mapView.addGestureRecognizer(singleTap)
+	}
+	
+	@objc private func handleMapTap(sender: UITapGestureRecognizer) {
+		let location = sender.location(in: mapView)
+		let rect = CGRect(x: location.x - 25, y: location.y - 25, width: 50, height: 50)
+		let features = mapView.visibleFeatures(in: rect, styleLayerIdentifiers: ["symbols"])
+		guard let firstFeature = features.first else { return }
+		
+		let annotation = MGLPointAnnotation()
+		annotation.coordinate = firstFeature.coordinate
+		annotation.title = firstFeature.attribute(forKey: "name") as? String
+		annotation.subtitle = "\(annotation.coordinate.latitude), \(annotation.coordinate.longitude)"
+		mapView.addAnnotation(annotation)
+		mapView.selectAnnotation(annotation, animated: true, completionHandler: nil)
 	}
 }
 
@@ -43,7 +63,20 @@ extension MapViewController: MGLMapViewDelegate {
 		let layer = MGLFillStyleLayer(identifier: "parks", source: source)
 		layer.sourceLayerIdentifier = "kansallispuisto"
 		layer.fillColor = NSExpression(forConstantValue: UIColor.red.withAlphaComponent(0.3))
-		layer.isVisible = true
 		style.addLayer(layer)
+		
+		let symbolLayer = MGLCircleStyleLayer(identifier: "symbols", source: source)
+		symbolLayer.sourceLayerIdentifier = "testipiste"
+		symbolLayer.circleColor = NSExpression(forConstantValue: UIColor.purple)
+		symbolLayer.circleRadius = NSExpression(forConstantValue: 10)
+		style.addLayer(symbolLayer)
+	}
+	
+	func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
+		return true
+	}
+	
+	func mapView(_ mapView: MGLMapView, didDeselect annotation: MGLAnnotation) {
+		mapView.removeAnnotation(annotation)
 	}
 }
