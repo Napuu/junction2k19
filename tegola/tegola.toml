@@ -124,51 +124,51 @@ name = "postgis"
   max_zoom = 20
 
   [[maps.layers]]
-  provider_layer = "postgis.1"
+  provider_layer = "postgis.monthly1"
   min_zoom = 0
   max_zoom = 20
   [[maps.layers]]
-  provider_layer = "postgis.2"
+  provider_layer = "postgis.monthly2"
   min_zoom = 0
   max_zoom = 20
   [[maps.layers]]
-  provider_layer = "postgis.3"
+  provider_layer = "postgis.monthly3"
   min_zoom = 0
   max_zoom = 20
   [[maps.layers]]
-  provider_layer = "postgis.4"
+  provider_layer = "postgis.monthly4"
   min_zoom = 0
   max_zoom = 20
   [[maps.layers]]
-  provider_layer = "postgis.5"
+  provider_layer = "postgis.monthly5"
   min_zoom = 0
   max_zoom = 20
   [[maps.layers]]
-  provider_layer = "postgis.6"
+  provider_layer = "postgis.monthly6"
   min_zoom = 0
   max_zoom = 20
   [[maps.layers]]
-  provider_layer = "postgis.7"
+  provider_layer = "postgis.monthly7"
   min_zoom = 0
   max_zoom = 20
   [[maps.layers]]
-  provider_layer = "postgis.8"
+  provider_layer = "postgis.monthly8"
   min_zoom = 0
   max_zoom = 20
   [[maps.layers]]
-  provider_layer = "postgis.9"
+  provider_layer = "postgis.monthly9"
   min_zoom = 0
   max_zoom = 20
   [[maps.layers]]
-  provider_layer = "postgis.10"
+  provider_layer = "postgis.monthly10"
   min_zoom = 0
   max_zoom = 20
   [[maps.layers]]
-  provider_layer = "postgis.11"
+  provider_layer = "postgis.monthly11"
   min_zoom = 0
   max_zoom = 20
   [[maps.layers]]
-  provider_layer = "postgis.12"
+  provider_layer = "postgis.monthly12"
   min_zoom = 0
   max_zoom = 20
 
