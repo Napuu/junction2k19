@@ -85,7 +85,7 @@ class MapViewController: UIViewController {
 		
 		for i in 0...11 {
 			let heatmapLayer = MGLHeatmapStyleLayer(identifier: "heatmap\(i)", source: source)
-			heatmapLayer.sourceLayerIdentifier = String(i + 1)
+			heatmapLayer.sourceLayerIdentifier = "monthly\(i + 1)"
 			heatmapLayer.heatmapOpacity = NSExpression(forConstantValue: i == 0 ? 1 : 0)
 			
 			let colors: [NSNumber: UIColor] = [
@@ -116,6 +116,14 @@ class MapViewController: UIViewController {
 			heatmapLayers.append(heatmapLayer)
 		}
 	}
+	
+	private func addPathLayer(to style: MGLStyle, source: MGLSource) {
+		let layer = MGLLineStyleLayer(identifier: "path", source: source)
+		layer.sourceLayerIdentifier = "polku"
+		layer.lineWidth = NSExpression(forConstantValue: 5)
+		layer.lineColor = NSExpression(forConstantValue: UIColor.red)
+		style.addLayer(layer)
+	}
 }
 
 extension MapViewController: MGLMapViewDelegate {
@@ -129,6 +137,7 @@ extension MapViewController: MGLMapViewDelegate {
 		
 		// addAreaLayer(to: style, source: source)
 		addHeatmapLayers(to: style, source: source)
+		addPathLayer(to: style, source: source)
 		
 		let annotation = MGLPointFeature()
 		annotation.coordinate = CLLocationCoordinate2D(latitude: 65.4, longitude: 26.5)
