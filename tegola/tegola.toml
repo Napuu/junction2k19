@@ -1,6 +1,10 @@
 [webserver]
 port = ":8083"
 
+[cache]
+type="file"             
+basepath="./cache"
+
 # register data providers
 [[providers]]
 name = "postgis"           # provider name is referenced from map layers
@@ -11,6 +15,7 @@ database = "test"       # postgis database name
 user = "avnadmin"         # postgis database user
 password = "nokmwq63rc6seyjs"           # postgis database password
 ssl_mode = "require"
+max_connections = 150
 # srid =              # The default srid for this provider. If not provided it will be WebMercator (3857)
 
   [[providers.layers]]
@@ -23,70 +28,86 @@ ssl_mode = "require"
   name = "testipiste"
   geometry_fieldname = "geom"
   id_fieldname = "ogc_fid"
-  sql = "SELECT ST_AsBinary(geom) AS geom, name, visits, ogc_fid FROM public.distinct_named_locations WHERE geom && !BBOX!"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.distinct_named_locations WHERE geom && !BBOX!"
 
   [[providers.layers]]
-  name = "1"
+  name = "monthly1"
   geometry_fieldname = "geom"
   id_fieldname = "ogc_fid"
-  sql = "SELECT ST_AsBinary(geom) AS geom, name, visits, ogc_fid FROM public.distinct_named_locations WHERE geom && !BBOX!"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.monthly_visits_2 WHERE month = 1 AND geom && !BBOX!"
+
   [[providers.layers]]
-  name = "2"
+  name = "monthly2"
   geometry_fieldname = "geom"
   id_fieldname = "ogc_fid"
-  sql = "SELECT ST_AsBinary(geom) AS geom, name, visits, ogc_fid FROM public.distinct_named_locations1 WHERE geom && !BBOX!"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.monthly_visits_2 WHERE month = 2 AND geom && !BBOX!"
+
   [[providers.layers]]
-  name = "3"
+  name = "monthly3"
   geometry_fieldname = "geom"
   id_fieldname = "ogc_fid"
-  sql = "SELECT ST_AsBinary(geom) AS geom, name, visits, ogc_fid FROM public.distinct_named_locations2 WHERE geom && !BBOX!"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.monthly_visits_2 WHERE month = 3 AND geom && !BBOX!"
+
   [[providers.layers]]
-  name = "4"
+  name = "monthly4"
   geometry_fieldname = "geom"
   id_fieldname = "ogc_fid"
-  sql = "SELECT ST_AsBinary(geom) AS geom, name, visits, ogc_fid FROM public.distinct_named_locations3 WHERE geom && !BBOX!"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.monthly_visits_2 WHERE month = 4 AND geom && !BBOX!"
+
   [[providers.layers]]
-  name = "5"
+  name = "monthly5"
   geometry_fieldname = "geom"
   id_fieldname = "ogc_fid"
-  sql = "SELECT ST_AsBinary(geom) AS geom, name, visits, ogc_fid FROM public.distinct_named_locations4 WHERE geom && !BBOX!"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.monthly_visits_2 WHERE month = 5 AND geom && !BBOX!"
+
   [[providers.layers]]
-  name = "6"
+  name = "monthly6"
   geometry_fieldname = "geom"
   id_fieldname = "ogc_fid"
-  sql = "SELECT ST_AsBinary(geom) AS geom, name, visits, ogc_fid FROM public.distinct_named_locations5 WHERE geom && !BBOX!"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.monthly_visits_2 WHERE month = 6 AND geom && !BBOX!"
+
   [[providers.layers]]
-  name = "7"
+  name = "monthly7"
   geometry_fieldname = "geom"
   id_fieldname = "ogc_fid"
-  sql = "SELECT ST_AsBinary(geom) AS geom, name, visits, ogc_fid FROM public.distinct_named_locations6 WHERE geom && !BBOX!"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.monthly_visits_2 WHERE month = 7 AND geom && !BBOX!"
+
   [[providers.layers]]
-  name = "8"
+  name = "monthly8"
   geometry_fieldname = "geom"
   id_fieldname = "ogc_fid"
-  sql = "SELECT ST_AsBinary(geom) AS geom, name, visits, ogc_fid FROM public.distinct_named_locations9 WHERE geom && !BBOX!"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.monthly_visits_2 WHERE month = 8 AND geom && !BBOX!"
+
   [[providers.layers]]
-  name = "9"
+  name = "monthly9"
   geometry_fieldname = "geom"
   id_fieldname = "ogc_fid"
-  sql = "SELECT ST_AsBinary(geom) AS geom, name, visits, ogc_fid FROM public.distinct_named_locations8 WHERE geom && !BBOX!"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.monthly_visits_2 WHERE month = 9 AND geom && !BBOX!"
+
   [[providers.layers]]
-  name = "10"
+  name = "monthly10"
   geometry_fieldname = "geom"
   id_fieldname = "ogc_fid"
-  sql = "SELECT ST_AsBinary(geom) AS geom, name, visits, ogc_fid FROM public.distinct_named_locations9 WHERE geom && !BBOX!"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.monthly_visits_2 WHERE month = 10 AND geom && !BBOX!"
+
   [[providers.layers]]
-  name = "11"
+  name = "monthly11"
   geometry_fieldname = "geom"
   id_fieldname = "ogc_fid"
-  sql = "SELECT ST_AsBinary(geom) AS geom, name, visits, ogc_fid FROM public.distinct_named_locations10 WHERE geom && !BBOX!"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.monthly_visits_2 WHERE month = 11 AND geom && !BBOX!"
+
   [[providers.layers]]
-  name = "12"
+  name = "monthly12"
   geometry_fieldname = "geom"
   id_fieldname = "ogc_fid"
-  sql = "SELECT ST_AsBinary(geom) AS geom, name, visits, ogc_fid FROM public.distinct_named_locations11 WHERE geom && !BBOX!"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.monthly_visits_2 WHERE month = 12 AND geom && !BBOX!"
 
 
+  [[providers.layers]]
+  name = "polku"
+  geometry_fieldname = "wkb_geometry"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(wkb_geometry) AS wkb_geometry, ogc_fid FROM public.polut2 WHERE wkb_geometry && !BBOX!"
 
 [[maps]]
 name = "postgis"
@@ -99,5 +120,59 @@ name = "postgis"
 
   [[maps.layers]]
   provider_layer = "postgis.testipiste"
+  min_zoom = 0
+  max_zoom = 20
+
+  [[maps.layers]]
+  provider_layer = "postgis.1"
+  min_zoom = 0
+  max_zoom = 20
+  [[maps.layers]]
+  provider_layer = "postgis.2"
+  min_zoom = 0
+  max_zoom = 20
+  [[maps.layers]]
+  provider_layer = "postgis.3"
+  min_zoom = 0
+  max_zoom = 20
+  [[maps.layers]]
+  provider_layer = "postgis.4"
+  min_zoom = 0
+  max_zoom = 20
+  [[maps.layers]]
+  provider_layer = "postgis.5"
+  min_zoom = 0
+  max_zoom = 20
+  [[maps.layers]]
+  provider_layer = "postgis.6"
+  min_zoom = 0
+  max_zoom = 20
+  [[maps.layers]]
+  provider_layer = "postgis.7"
+  min_zoom = 0
+  max_zoom = 20
+  [[maps.layers]]
+  provider_layer = "postgis.8"
+  min_zoom = 0
+  max_zoom = 20
+  [[maps.layers]]
+  provider_layer = "postgis.9"
+  min_zoom = 0
+  max_zoom = 20
+  [[maps.layers]]
+  provider_layer = "postgis.10"
+  min_zoom = 0
+  max_zoom = 20
+  [[maps.layers]]
+  provider_layer = "postgis.11"
+  min_zoom = 0
+  max_zoom = 20
+  [[maps.layers]]
+  provider_layer = "postgis.12"
+  min_zoom = 0
+  max_zoom = 20
+
+  [[maps.layers]]
+  provider_layer = "postgis.polku"
   min_zoom = 0
   max_zoom = 20
