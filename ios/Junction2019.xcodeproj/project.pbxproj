@@ -13,6 +13,8 @@
 		27048BEB237F347100F05ABB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27048BE6237F347100F05ABB /* AppDelegate.swift */; };
 		27048BEE237F4BD800F05ABB /* SlideshowContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27048BED237F4BD800F05ABB /* SlideshowContentViewController.swift */; };
 		274C85AC237F507100BEF7EB /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274C85AB237F507100BEF7EB /* WelcomeViewController.swift */; };
+		274C85AE238003F300BEF7EB /* BigButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274C85AD238003F300BEF7EB /* BigButton.swift */; };
+		274C85B0238006C200BEF7EB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274C85AF238006C200BEF7EB /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		27048BE6237F347100F05ABB /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		27048BED237F4BD800F05ABB /* SlideshowContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideshowContentViewController.swift; sourceTree = "<group>"; };
 		274C85AB237F507100BEF7EB /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		274C85AD238003F300BEF7EB /* BigButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigButton.swift; sourceTree = "<group>"; };
+		274C85AF238006C200BEF7EB /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +83,8 @@
 				27048BE5237F347100F05ABB /* SlideshowViewController.swift */,
 				27048BED237F4BD800F05ABB /* SlideshowContentViewController.swift */,
 				274C85AB237F507100BEF7EB /* WelcomeViewController.swift */,
+				274C85AF238006C200BEF7EB /* MapViewController.swift */,
+				274C85AD238003F300BEF7EB /* BigButton.swift */,
 			);
 			path = Code;
 			sourceTree = "<group>";
@@ -176,8 +182,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				27048BEE237F4BD800F05ABB /* SlideshowContentViewController.swift in Sources */,
+				274C85B0238006C200BEF7EB /* MapViewController.swift in Sources */,
 				274C85AC237F507100BEF7EB /* WelcomeViewController.swift in Sources */,
 				27048BEB237F347100F05ABB /* AppDelegate.swift in Sources */,
+				274C85AE238003F300BEF7EB /* BigButton.swift in Sources */,
 				27048BEA237F347100F05ABB /* SlideshowViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
