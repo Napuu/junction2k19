@@ -9,24 +9,5 @@
 import UIKit
 
 class SlideshowContentViewController: UIViewController {
-	var parallaxFactor: CGFloat = 0 {
-		didSet {
-			label.text = String(format: "%.2f", parallaxFactor)
-		}
-	}
-	
-	let label = UILabel()
-	
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		
-		view.backgroundColor = .systemBackground
-		
-		view.addSubview(label)
-		label.translatesAutoresizingMaskIntoConstraints = false
-		NSLayoutConstraint.activate([
-			label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-			label.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-		])
-	}
+	var parallaxFactor: CGFloat = 0
 }

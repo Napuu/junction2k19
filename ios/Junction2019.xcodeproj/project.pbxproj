@@ -12,6 +12,7 @@
 		27048BEA237F347100F05ABB /* SlideshowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27048BE5237F347100F05ABB /* SlideshowViewController.swift */; };
 		27048BEB237F347100F05ABB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27048BE6237F347100F05ABB /* AppDelegate.swift */; };
 		27048BEE237F4BD800F05ABB /* SlideshowContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27048BED237F4BD800F05ABB /* SlideshowContentViewController.swift */; };
+		274C85AC237F507100BEF7EB /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274C85AB237F507100BEF7EB /* WelcomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		27048BE5237F347100F05ABB /* SlideshowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideshowViewController.swift; sourceTree = "<group>"; };
 		27048BE6237F347100F05ABB /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		27048BED237F4BD800F05ABB /* SlideshowContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideshowContentViewController.swift; sourceTree = "<group>"; };
+		274C85AB237F507100BEF7EB /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 				27048BE6237F347100F05ABB /* AppDelegate.swift */,
 				27048BE5237F347100F05ABB /* SlideshowViewController.swift */,
 				27048BED237F4BD800F05ABB /* SlideshowContentViewController.swift */,
+				274C85AB237F507100BEF7EB /* WelcomeViewController.swift */,
 			);
 			path = Code;
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				27048BEE237F4BD800F05ABB /* SlideshowContentViewController.swift in Sources */,
+				274C85AC237F507100BEF7EB /* WelcomeViewController.swift in Sources */,
 				27048BEB237F347100F05ABB /* AppDelegate.swift in Sources */,
 				27048BEA237F347100F05ABB /* SlideshowViewController.swift in Sources */,
 			);
