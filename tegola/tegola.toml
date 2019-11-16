@@ -19,10 +19,22 @@ ssl_mode = "require"
   id_fieldname = "ogc_fid"
   sql = "SELECT ST_AsBinary(wkb_geometry) AS wkb_geometry, kohdeluokk, ogc_fid FROM public.kansallispuistot WHERE wkb_geometry && !BBOX!"
 
+  [[providers.layers]]
+  name = "testipiste"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, name, ogc_fid FROM public.distinct_named_locations WHERE geom && !BBOX!"
+
 [[maps]]
 name = "postgis"
 
   [[maps.layers]]
   provider_layer = "postgis.kansallispuisto"
+  min_zoom = 0
+  max_zoom = 20
+
+
+  [[maps.layers]]
+  provider_layer = "postgis.testipiste"
   min_zoom = 0
   max_zoom = 20
