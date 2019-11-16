@@ -129,6 +129,10 @@ extension MapViewController: MGLMapViewDelegate {
 		
 		// addAreaLayer(to: style, source: source)
 		addHeatmapLayers(to: style, source: source)
+		
+		let annotation = MGLPointFeature()
+		annotation.coordinate = CLLocationCoordinate2D(latitude: 65.4, longitude: 26.5)
+		mapView.addAnnotation(annotation)
 	}
 	
 	func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
@@ -137,5 +141,10 @@ extension MapViewController: MGLMapViewDelegate {
 	
 	func mapView(_ mapView: MGLMapView, didDeselect annotation: MGLAnnotation) {
 		mapView.removeAnnotation(annotation)
+	}
+	
+	func mapView(_ mapView: MGLMapView, imageFor annotation: MGLAnnotation) -> MGLAnnotationImage? {
+		let image = MGLAnnotationImage(image: UIImage(named: "reindeer")!, reuseIdentifier: "reindeer")
+		return image
 	}
 }
