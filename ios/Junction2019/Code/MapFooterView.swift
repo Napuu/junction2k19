@@ -45,8 +45,8 @@ class MapFooterView: UIView {
 			sliderContainer.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
 			sliderContainer.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor),
 			
-			slider.leadingAnchor.constraint(equalTo: sliderContainer.leadingAnchor, constant: -32),
-			slider.trailingAnchor.constraint(equalTo: sliderContainer.trailingAnchor, constant: 32),
+			slider.leadingAnchor.constraint(equalTo: sliderContainer.leadingAnchor, constant: -30),
+			slider.trailingAnchor.constraint(equalTo: sliderContainer.trailingAnchor, constant: 30),
 			slider.centerYAnchor.constraint(equalTo: sliderContainer.topAnchor)
 		])
 		
