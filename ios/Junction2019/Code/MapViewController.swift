@@ -143,6 +143,10 @@ extension MapViewController: MGLMapViewDelegate {
 		mapView.removeAnnotation(annotation)
 	}
 	
+	func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
+		return WeatherView(frame: CGRect(x: 0, y: 0, width: 96, height: 58))
+	}
+	
 	func mapView(_ mapView: MGLMapView, imageFor annotation: MGLAnnotation) -> MGLAnnotationImage? {
 		let image = MGLAnnotationImage(image: UIImage(named: "reindeer")!, reuseIdentifier: "reindeer")
 		return image
