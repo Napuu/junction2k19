@@ -13,20 +13,32 @@ class MapViewController: UIViewController {
 	private static let mapURL = URL(string: "mapbox://styles/palikk/ck31fqa9a19se1ctd00qnx31f")
 	private let mapView = MGLMapView(frame: .zero, styleURL: MapViewController.mapURL)
 	
+	let slider = UISlider()
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
+		view.layoutMargins = UIEdgeInsets(top: 64, left: 128, bottom: 80, right: 128)
 	
 		mapView.setCenter(CLLocationCoordinate2D(latitude: 65.4, longitude: 26.5), zoomLevel: 4.5, animated: false)
 		mapView.delegate = self
 		
-		mapView.translatesAutoresizingMaskIntoConstraints = false
-		view.addSubview(mapView)
+		slider.setThumbImage(UIImage(named: "knob"), for: .normal)
+		
+		[mapView, slider].forEach {
+			$0.translatesAutoresizingMaskIntoConstraints = false
+			view.addSubview($0)
+		}
 		
 		NSLayoutConstraint.activate([
 			mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
 			mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
 			mapView.topAnchor.constraint(equalTo: view.topAnchor),
-			mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+			mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+			
+			slider.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+			slider.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+			slider.centerYAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor)
 		])
 		
 		let singleTap = UITapGestureRecognizer(target: self, action: #selector(handleMapTap))
