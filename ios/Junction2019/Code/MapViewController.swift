@@ -51,7 +51,7 @@ class MapViewController: UIViewController {
 	@objc private func handleMapTap(sender: UITapGestureRecognizer) {
 		let location = sender.location(in: mapView)
 		let rect = CGRect(x: location.x - 25, y: location.y - 25, width: 50, height: 50)
-		let features = mapView.visibleFeatures(in: rect, styleLayerIdentifiers: ["symbols"])
+		let features = mapView.visibleFeatures(in: rect, styleLayerIdentifiers: ["heatmap"])
 		guard let firstFeature = features.first else { return }
 		
 		let annotation = MGLPointAnnotation()
@@ -77,11 +77,34 @@ extension MapViewController: MGLMapViewDelegate {
 		layer.fillColor = NSExpression(forConstantValue: UIColor.red.withAlphaComponent(0.3))
 		style.addLayer(layer)
 		
-		let symbolLayer = MGLCircleStyleLayer(identifier: "symbols", source: source)
-		symbolLayer.sourceLayerIdentifier = "testipiste"
-		symbolLayer.circleColor = NSExpression(forConstantValue: UIColor.purple)
-		symbolLayer.circleRadius = NSExpression(forConstantValue: 10)
-		style.addLayer(symbolLayer)
+		
+		let heatmapLayer = MGLHeatmapStyleLayer(identifier: "heatmap", source: source)
+		heatmapLayer.sourceLayerIdentifier = "testipiste"
+		
+		let colors: [NSNumber: UIColor] = [
+			0: .clear,
+			0.5: UIColor(red: 0.73, green: 0.23, blue: 0.25, alpha: 0.8),
+			0.95: UIColor.orange.withAlphaComponent(0.8),
+			1: UIColor.yellow.withAlphaComponent(0.8)
+		]
+		let colorFormat = "mgl_interpolate:withCurveType:parameters:stops:($heatmapDensity, 'linear', nil, %@)"
+		heatmapLayer.heatmapColor = NSExpression(format: colorFormat, colors)
+			
+		let weights = [
+			0: 0,
+			10: 1
+		]
+		let weightFormat = "mgl_interpolate:withCurveType:parameters:stops:(visits, 'linear', nil, %@)"
+		heatmapLayer.heatmapWeight = NSExpression(format: weightFormat, weights)
+		
+		let intensities = [
+			0: 1,
+			9: 3
+		]
+		let intensityFormat = "mgl_interpolate:withCurveType:parameters:stops:($zoomLevel, 'linear', nil, %@)"
+		heatmapLayer.heatmapIntensity = NSExpression(format: intensityFormat, intensities)
+		
+		style.addLayer(heatmapLayer)
 	}
 	
 	func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
