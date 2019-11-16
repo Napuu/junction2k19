@@ -1,0 +1,28 @@
+[webserver]
+port = ":8083"
+
+# register data providers
+[[providers]]
+name = "postgis"           # provider name is referenced from map layers
+type = "postgis"        # the type of data provider. currently only supports postgis
+host = "junction2k19-db-aarnio-b109.aivencloud.com"      # postgis database host
+port = 16910             # postgis database port
+database = "test"       # postgis database name
+user = "avnadmin"         # postgis database user
+password = "nokmwq63rc6seyjs"           # postgis database password
+ssl_mode = "require"
+# srid =              # The default srid for this provider. If not provided it will be WebMercator (3857)
+
+  [[providers.layers]]
+  name = "kansallispuisto"
+  geometry_fieldname = "wkb_geometry"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(wkb_geometry) AS wkb_geometry, kohdeluokk, ogc_fid FROM public.kansallispuistot WHERE wkb_geometry && !BBOX!"
+
+[[maps]]
+name = "postgis"
+
+  [[maps.layers]]
+  provider_layer = "postgis.kansallispuisto"
+  min_zoom = 0
+  max_zoom = 20
