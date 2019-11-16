@@ -15,20 +15,23 @@ class MapViewController: UIViewController {
 	
 	var heatmapLayers = [MGLHeatmapStyleLayer]()
 	
-	let slider = UISlider()
+	let sliderStepsView = MapFooterView()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
-		view.layoutMargins = UIEdgeInsets(top: 64, left: 128, bottom: 80, right: 128)
 	
 		mapView.setCenter(CLLocationCoordinate2D(latitude: 65.4, longitude: 26.5), zoomLevel: 4.5, animated: false)
 		mapView.delegate = self
 		
-		slider.setThumbImage(UIImage(named: "knob"), for: .normal)
-		slider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
+		sliderStepsView.sliderCallback = { [weak self] value in
+			guard let self = self else { return }
+			let month = Int((value * 11).rounded())
+			for (index, heatmapLayer) in self.heatmapLayers.enumerated() {
+				heatmapLayer.heatmapOpacity = NSExpression(forConstantValue: 1 - min(1, abs(Double(month - index))))
+			}
+		}
 		
-		[mapView, slider].forEach {
+		[mapView, sliderStepsView].forEach {
 			$0.translatesAutoresizingMaskIntoConstraints = false
 			view.addSubview($0)
 		}
@@ -39,9 +42,9 @@ class MapViewController: UIViewController {
 			mapView.topAnchor.constraint(equalTo: view.topAnchor),
 			mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 			
-			slider.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-			slider.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
-			slider.centerYAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor)
+			sliderStepsView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+			sliderStepsView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+			sliderStepsView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
 		])
 		
 		let singleTap = UITapGestureRecognizer(target: self, action: #selector(handleMapTap))
@@ -63,13 +66,6 @@ class MapViewController: UIViewController {
 		annotation.subtitle = "\(annotation.coordinate.latitude), \(annotation.coordinate.longitude)"
 		mapView.addAnnotation(annotation)
 		mapView.selectAnnotation(annotation, animated: true, completionHandler: nil)
-	}
-	
-	@objc private func sliderValueChanged(_ slider: UISlider) {
-		let month = Int((slider.value * 11).rounded())
-		for (index, heatmapLayer) in heatmapLayers.enumerated() {
-			heatmapLayer.heatmapOpacity = NSExpression(forConstantValue: 1 - min(1, abs(Double(month - index))))
-		}
 	}
 }
 
@@ -104,7 +100,8 @@ extension MapViewController: MGLMapViewDelegate {
 				
 			let weights = [
 				0: 0,
-				10: 1
+				1000: 0.1,
+				20000: 1
 			]
 			let weightFormat = "mgl_interpolate:withCurveType:parameters:stops:(visits, 'linear', nil, %@)"
 			heatmapLayer.heatmapWeight = NSExpression(format: weightFormat, weights)

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,7 @@
 		274C85AC237F507100BEF7EB /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274C85AB237F507100BEF7EB /* WelcomeViewController.swift */; };
 		274C85AE238003F300BEF7EB /* BigButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274C85AD238003F300BEF7EB /* BigButton.swift */; };
 		274C85B0238006C200BEF7EB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274C85AF238006C200BEF7EB /* MapViewController.swift */; };
+		274C85B2238066A900BEF7EB /* MapFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274C85B1238066A900BEF7EB /* MapFooterView.swift */; };
 		B3FFFD470648E9A6738B9808 /* Pods_Junction2019.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7F1F88984BCE2D7CACEF11B /* Pods_Junction2019.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		274C85AB237F507100BEF7EB /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		274C85AD238003F300BEF7EB /* BigButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigButton.swift; sourceTree = "<group>"; };
 		274C85AF238006C200BEF7EB /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		274C85B1238066A900BEF7EB /* MapFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFooterView.swift; sourceTree = "<group>"; };
 		C4C4368C8E6832C54025CC56 /* Pods-Junction2019.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Junction2019.release.xcconfig"; path = "Target Support Files/Pods-Junction2019/Pods-Junction2019.release.xcconfig"; sourceTree = "<group>"; };
 		F7F1F88984BCE2D7CACEF11B /* Pods_Junction2019.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Junction2019.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBD0A5EA91AAE7D8E47B41FC /* Pods-Junction2019.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Junction2019.debug.xcconfig"; path = "Target Support Files/Pods-Junction2019/Pods-Junction2019.debug.xcconfig"; sourceTree = "<group>"; };
@@ -52,7 +54,6 @@
 				FBD0A5EA91AAE7D8E47B41FC /* Pods-Junction2019.debug.xcconfig */,
 				C4C4368C8E6832C54025CC56 /* Pods-Junction2019.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -101,6 +102,7 @@
 				27048BED237F4BD800F05ABB /* SlideshowContentViewController.swift */,
 				274C85AB237F507100BEF7EB /* WelcomeViewController.swift */,
 				274C85AF238006C200BEF7EB /* MapViewController.swift */,
+				274C85B1238066A900BEF7EB /* MapFooterView.swift */,
 				274C85AD238003F300BEF7EB /* BigButton.swift */,
 			);
 			path = Code;
@@ -251,6 +253,7 @@
 				274C85B0238006C200BEF7EB /* MapViewController.swift in Sources */,
 				274C85AC237F507100BEF7EB /* WelcomeViewController.swift in Sources */,
 				27048BEB237F347100F05ABB /* AppDelegate.swift in Sources */,
+				274C85B2238066A900BEF7EB /* MapFooterView.swift in Sources */,
 				274C85AE238003F300BEF7EB /* BigButton.swift in Sources */,
 				27048BEA237F347100F05ABB /* SlideshowViewController.swift in Sources */,
 			);
