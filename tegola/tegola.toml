@@ -23,7 +23,70 @@ ssl_mode = "require"
   name = "testipiste"
   geometry_fieldname = "geom"
   id_fieldname = "ogc_fid"
-  sql = "SELECT ST_AsBinary(geom) AS geom, name, ogc_fid FROM public.distinct_named_locations WHERE geom && !BBOX!"
+  sql = "SELECT ST_AsBinary(geom) AS geom, name, visits, ogc_fid FROM public.distinct_named_locations WHERE geom && !BBOX!"
+
+  [[providers.layers]]
+  name = "1"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, name, visits, ogc_fid FROM public.distinct_named_locations WHERE geom && !BBOX!"
+  [[providers.layers]]
+  name = "2"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, name, visits, ogc_fid FROM public.distinct_named_locations1 WHERE geom && !BBOX!"
+  [[providers.layers]]
+  name = "3"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, name, visits, ogc_fid FROM public.distinct_named_locations2 WHERE geom && !BBOX!"
+  [[providers.layers]]
+  name = "4"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, name, visits, ogc_fid FROM public.distinct_named_locations3 WHERE geom && !BBOX!"
+  [[providers.layers]]
+  name = "5"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, name, visits, ogc_fid FROM public.distinct_named_locations4 WHERE geom && !BBOX!"
+  [[providers.layers]]
+  name = "6"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, name, visits, ogc_fid FROM public.distinct_named_locations5 WHERE geom && !BBOX!"
+  [[providers.layers]]
+  name = "7"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, name, visits, ogc_fid FROM public.distinct_named_locations6 WHERE geom && !BBOX!"
+  [[providers.layers]]
+  name = "8"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, name, visits, ogc_fid FROM public.distinct_named_locations9 WHERE geom && !BBOX!"
+  [[providers.layers]]
+  name = "9"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, name, visits, ogc_fid FROM public.distinct_named_locations8 WHERE geom && !BBOX!"
+  [[providers.layers]]
+  name = "10"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, name, visits, ogc_fid FROM public.distinct_named_locations9 WHERE geom && !BBOX!"
+  [[providers.layers]]
+  name = "11"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, name, visits, ogc_fid FROM public.distinct_named_locations10 WHERE geom && !BBOX!"
+  [[providers.layers]]
+  name = "12"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, name, visits, ogc_fid FROM public.distinct_named_locations11 WHERE geom && !BBOX!"
+
+
 
 [[maps]]
 name = "postgis"
