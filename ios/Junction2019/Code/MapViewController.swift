@@ -67,23 +67,17 @@ class MapViewController: UIViewController {
 		mapView.addAnnotation(annotation)
 		mapView.selectAnnotation(annotation, animated: true, completionHandler: nil)
 	}
-}
-
-extension MapViewController: MGLMapViewDelegate {
-	func mapView(_ mapView: MGLMapView, didFinishLoading style: MGLStyle) {
-		let tileURLTemplates = ["http://51.144.0.238/tiles/maps/postgis/{z}/{x}/{y}.pbf"]
-		let source = MGLVectorTileSource(identifier: "parks", tileURLTemplates: tileURLTemplates, options: [
-			.minimumZoomLevel: 4.5,
-			.maximumZoomLevel: 16
-		])
-		style.addSource(source)
-		
+	
+	private func addAreaLayer(to style: MGLStyle, source: MGLSource) {
 		let layer = MGLFillStyleLayer(identifier: "parks", source: source)
 		layer.sourceLayerIdentifier = "kansallispuisto"
 		layer.fillColor = NSExpression(forConstantValue: UIColor.red.withAlphaComponent(0.3))
 		style.addLayer(layer)
-		
+	}
+	
+	private func addHeatmapLayers(to style: MGLStyle, source: MGLSource) {
 		heatmapLayers.removeAll()
+		
 		for i in 0...11 {
 			let heatmapLayer = MGLHeatmapStyleLayer(identifier: "heatmap\(i)", source: source)
 			heatmapLayer.sourceLayerIdentifier = String(i + 1)
@@ -116,6 +110,20 @@ extension MapViewController: MGLMapViewDelegate {
 			style.addLayer(heatmapLayer)
 			heatmapLayers.append(heatmapLayer)
 		}
+	}
+}
+
+extension MapViewController: MGLMapViewDelegate {
+	func mapView(_ mapView: MGLMapView, didFinishLoading style: MGLStyle) {
+		let tileURLTemplates = ["http://51.144.0.238/tiles/maps/postgis/{z}/{x}/{y}.pbf"]
+		let source = MGLVectorTileSource(identifier: "parks", tileURLTemplates: tileURLTemplates, options: [
+			.minimumZoomLevel: 4.5,
+			.maximumZoomLevel: 16
+		])
+		style.addSource(source)
+		
+		// addAreaLayer(to: style, source: source)
+		addHeatmapLayers(to: style, source: source)
 	}
 	
 	func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
