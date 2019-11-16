@@ -14,6 +14,11 @@ class MapFooterView: UIView {
 	let timeScaleControl = UISegmentedControl(items: ["Monthly", "Daily", "Hourly"])
 	
 	var sliderCallback: ((Float) -> Void)?
+	var focusCallback: ((Double, Double, Double) -> Void)?
+	
+	let focusButton1 = BigButton()
+	let focusButton2 = BigButton()
+	var trailingStackView = UIStackView()
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -28,13 +33,27 @@ class MapFooterView: UIView {
 		
 		timeScaleControl.selectedSegmentIndex = 0
 		
+		focusButton1.setTitle("Pallas", for: .normal)
+		focusButton2.setTitle("Nuuksio", for: .normal)
+		
+		[focusButton1, focusButton2].forEach {
+			$0.backgroundColor = .white
+			$0.titleLabel?.font = .boldSystemFont(ofSize: 17)
+			$0.setTitleColor(.black, for: .normal)
+			$0.addTarget(self, action: #selector(focusButtonPressed), for: .touchUpInside)
+		}
+		
+		trailingStackView.spacing = 16
+		trailingStackView.addArrangedSubview(focusButton1)
+		trailingStackView.addArrangedSubview(focusButton2)
+		
 		effectView.translatesAutoresizingMaskIntoConstraints = false
 		addSubview(effectView)
 		
 		sliderContainer.translatesAutoresizingMaskIntoConstraints = false
 		effectView.contentView.addSubview(sliderContainer)
 		
-		[slider, timeScaleControl].forEach {
+		[slider, timeScaleControl, trailingStackView].forEach {
 			$0.translatesAutoresizingMaskIntoConstraints = false
 			effectView.contentView.addSubview($0)
 		}
@@ -55,7 +74,14 @@ class MapFooterView: UIView {
 			
 			timeScaleControl.centerXAnchor.constraint(equalTo: centerXAnchor),
 			timeScaleControl.topAnchor.constraint(equalTo: sliderContainer.bottomAnchor, constant: 32),
-			timeScaleControl.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor)
+			timeScaleControl.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor),
+			timeScaleControl.heightAnchor.constraint(equalToConstant: 32),
+			
+			trailingStackView.centerYAnchor.constraint(equalTo: timeScaleControl.centerYAnchor),
+			trailingStackView.trailingAnchor.constraint(equalTo: slider.trailingAnchor),
+			
+			focusButton1.heightAnchor.constraint(equalTo: timeScaleControl.heightAnchor),
+			focusButton2.heightAnchor.constraint(equalTo: timeScaleControl.heightAnchor),
 		])
 		
 		let monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
@@ -99,5 +125,13 @@ class MapFooterView: UIView {
 	
 	@objc private func sliderValueChanged(_ slider: UISlider) {
 		sliderCallback?(slider.value)
+	}
+	
+	@objc private func focusButtonPressed(_ sender: UIButton) {
+		if sender == focusButton1 {
+			focusCallback?(67.9, 24.0, 8)
+		} else if sender == focusButton2 {
+			focusCallback?(60.3, 24.5, 11)
+		}
 	}
 }

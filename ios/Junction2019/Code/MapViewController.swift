@@ -31,6 +31,11 @@ class MapViewController: UIViewController {
 			}
 		}
 		
+		sliderStepsView.focusCallback = { [weak self] lat, lon, zoom in
+			guard let self = self else { return }
+			self.mapView.setCenter(CLLocationCoordinate2D(latitude: lat, longitude: lon), zoomLevel: zoom, animated: true)
+		}
+		
 		[mapView, sliderStepsView].forEach {
 			$0.translatesAutoresizingMaskIntoConstraints = false
 			view.addSubview($0)
