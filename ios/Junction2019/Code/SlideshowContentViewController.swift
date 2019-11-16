@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SlideshowContentViewController.swift
 //  Junction2019
 //
 //  Created by Otto Otsamo on 2019-11-15.
@@ -8,9 +8,6 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-	override func viewDidLoad() {
-		super.viewDidLoad()
-	}
+class SlideshowContentViewController: UIViewController {
+	var parallaxFactor: CGFloat = 0
 }
-
