@@ -3,3 +3,6 @@ FROM(SELECT SUM(visits) as visit_sum, EXTRACT(YEAR FROM starttime) as year, EXTR
       FROM junction
       GROUP BY month, year, geom) as sums
 GROUP BY month, geom;
+
+
+ALTER TABLE hourly_visits_3 ADD COLUMN ogc_fid SERIAL PRIMARY KEY;
