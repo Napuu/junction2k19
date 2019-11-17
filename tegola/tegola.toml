@@ -2,7 +2,7 @@
 port = ":8083"
 
 [cache]
-type="file"             
+type="file"
 basepath="./cache"
 
 # register data providers
@@ -104,6 +104,172 @@ max_connections = 150
 
 
   [[providers.layers]]
+  name = "daily0"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.daily_visits_3 WHERE day = 0 AND geom && !BBOX!"
+
+  [[providers.layers]]
+  name = "daily1"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.daily_visits_3 WHERE day = 0 AND geom && !BBOX!"
+
+  [[providers.layers]]
+  name = "daily2"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.daily_visits_3 WHERE day = 0 AND geom && !BBOX!"
+
+  [[providers.layers]]
+  name = "daily3"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.daily_visits_3 WHERE day = 0 AND geom && !BBOX!"
+
+  [[providers.layers]]
+  name = "daily4"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.daily_visits_3 WHERE day = 0 AND geom && !BBOX!"
+
+  [[providers.layers]]
+  name = "daily5"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.daily_visits_3 WHERE day = 0 AND geom && !BBOX!"
+
+  [[providers.layers]]
+  name = "daily6"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.daily_visits_3 WHERE day = 0 AND geom && !BBOX!"
+
+
+  [[providers.layers]]
+  name = "hour0"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.hourly_visits_3 WHERE hour = 0 AND geom && !BBOX!"
+  [[providers.layers]]
+  name = "hour1"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.hourly_visits_3 WHERE hour = 1 AND geom && !BBOX!"
+  [[providers.layers]]
+  name = "hour2"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.hourly_visits_3 WHERE hour = 2 AND geom && !BBOX!"
+  [[providers.layers]]
+  name = "hour3"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.hourly_visits_3 WHERE hour = 3 AND geom && !BBOX!"
+  [[providers.layers]]
+  name = "hour4"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.hourly_visits_3 WHERE hour = 4 AND geom && !BBOX!"
+  [[providers.layers]]
+  name = "hour5"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.hourly_visits_3 WHERE hour = 5 AND geom && !BBOX!"
+  [[providers.layers]]
+  name = "hour6"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.hourly_visits_3 WHERE hour = 6 AND geom && !BBOX!"
+  [[providers.layers]]
+  name = "hour7"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.hourly_visits_3 WHERE hour = 7 AND geom && !BBOX!"
+  [[providers.layers]]
+  name = "hour8"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.hourly_visits_3 WHERE hour = 8 AND geom && !BBOX!"
+  [[providers.layers]]
+  name = "hour9"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.hourly_visits_3 WHERE hour = 9 AND geom && !BBOX!"
+  [[providers.layers]]
+  name = "hour10"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.hourly_visits_3 WHERE hour = 10 AND geom && !BBOX!"
+  [[providers.layers]]
+  name = "hour11"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.hourly_visits_3 WHERE hour = 11 AND geom && !BBOX!"
+  [[providers.layers]]
+  name = "hour12"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.hourly_visits_3 WHERE hour = 12 AND geom && !BBOX!"
+  [[providers.layers]]
+  name = "hour13"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.hourly_visits_3 WHERE hour = 13 AND geom && !BBOX!"
+  [[providers.layers]]
+  name = "hour14"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.hourly_visits_3 WHERE hour = 14 AND geom && !BBOX!"
+  [[providers.layers]]
+  name = "hour15"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.hourly_visits_3 WHERE hour = 15 AND geom && !BBOX!"
+  [[providers.layers]]
+  name = "hour16"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.hourly_visits_3 WHERE hour = 16 AND geom && !BBOX!"
+  [[providers.layers]]
+  name = "hour17"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.hourly_visits_3 WHERE hour = 17 AND geom && !BBOX!"
+  [[providers.layers]]
+  name = "hour18"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.hourly_visits_3 WHERE hour = 18 AND geom && !BBOX!"
+  [[providers.layers]]
+  name = "hour19"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.hourly_visits_3 WHERE hour = 19 AND geom && !BBOX!"
+  [[providers.layers]]
+  name = "hour20"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.hourly_visits_3 WHERE hour = 20 AND geom && !BBOX!"
+  [[providers.layers]]
+  name = "hour21"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.hourly_visits_3 WHERE hour = 21 AND geom && !BBOX!"
+  [[providers.layers]]
+  name = "hour22"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.hourly_visits_3 WHERE hour = 22 AND geom && !BBOX!"
+  [[providers.layers]]
+  name = "hour23"
+  geometry_fieldname = "geom"
+  id_fieldname = "ogc_fid"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.hourly_visits_3 WHERE hour = 23 AND geom && !BBOX!"
+
+
+
+  [[providers.layers]]
   name = "polku"
   geometry_fieldname = "wkb_geometry"
   id_fieldname = "ogc_fid"
@@ -171,6 +337,135 @@ name = "postgis"
   provider_layer = "postgis.monthly12"
   min_zoom = 0
   max_zoom = 20
+
+
+  [[maps.layers]]
+  provider_layer = "postgis.daily0"
+  min_zoom = 0
+  max_zoom = 20
+  [[maps.layers]]
+  provider_layer = "postgis.daily1"
+  min_zoom = 0
+  max_zoom = 20
+  [[maps.layers]]
+  provider_layer = "postgis.daily2"
+  min_zoom = 0
+  max_zoom = 20
+  [[maps.layers]]
+  provider_layer = "postgis.daily3"
+  min_zoom = 0
+  max_zoom = 20
+  [[maps.layers]]
+  provider_layer = "postgis.daily4"
+  min_zoom = 0
+  max_zoom = 20
+  [[maps.layers]]
+  provider_layer = "postgis.daily5"
+  min_zoom = 0
+  max_zoom = 20
+  [[maps.layers]]
+  provider_layer = "postgis.daily6"
+  min_zoom = 0
+  max_zoom = 20
+
+
+  [[maps.layers]]
+  provider_layer = "postgis.hour0"
+  min_zoom = 0
+  max_zoom = 20
+  [[maps.layers]]
+  provider_layer = "postgis.hour1"
+  min_zoom = 0
+  max_zoom = 20
+  [[maps.layers]]
+  provider_layer = "postgis.hour2"
+  min_zoom = 0
+  max_zoom = 20
+  [[maps.layers]]
+  provider_layer = "postgis.hour3"
+  min_zoom = 0
+  max_zoom = 20
+  [[maps.layers]]
+  provider_layer = "postgis.hour4"
+  min_zoom = 0
+  max_zoom = 20
+  [[maps.layers]]
+  provider_layer = "postgis.hour5"
+  min_zoom = 0
+  max_zoom = 20
+  [[maps.layers]]
+  provider_layer = "postgis.hour6"
+  min_zoom = 0
+  max_zoom = 20
+  [[maps.layers]]
+  provider_layer = "postgis.hour7"
+  min_zoom = 0
+  max_zoom = 20
+  [[maps.layers]]
+  provider_layer = "postgis.hour8"
+  min_zoom = 0
+  max_zoom = 20
+  [[maps.layers]]
+  provider_layer = "postgis.hour9"
+  min_zoom = 0
+  max_zoom = 20
+  [[maps.layers]]
+  provider_layer = "postgis.hour10"
+  min_zoom = 0
+  max_zoom = 20
+  [[maps.layers]]
+  provider_layer = "postgis.hour11"
+  min_zoom = 0
+  max_zoom = 20
+  [[maps.layers]]
+  provider_layer = "postgis.hour12"
+  min_zoom = 0
+  max_zoom = 20
+  [[maps.layers]]
+  provider_layer = "postgis.hour13"
+  min_zoom = 0
+  max_zoom = 20
+  [[maps.layers]]
+  provider_layer = "postgis.hour14"
+  min_zoom = 0
+  max_zoom = 20
+  [[maps.layers]]
+  provider_layer = "postgis.hour15"
+  min_zoom = 0
+  max_zoom = 20
+  [[maps.layers]]
+  provider_layer = "postgis.hour16"
+  min_zoom = 0
+  max_zoom = 20
+  [[maps.layers]]
+  provider_layer = "postgis.hour17"
+  min_zoom = 0
+  max_zoom = 20
+  [[maps.layers]]
+  provider_layer = "postgis.hour18"
+  min_zoom = 0
+  max_zoom = 20
+  [[maps.layers]]
+  provider_layer = "postgis.hour19"
+  min_zoom = 0
+  max_zoom = 20
+  [[maps.layers]]
+  provider_layer = "postgis.hour20"
+  min_zoom = 0
+  max_zoom = 20
+  [[maps.layers]]
+  provider_layer = "postgis.hour21"
+  min_zoom = 0
+  max_zoom = 20
+  [[maps.layers]]
+  provider_layer = "postgis.hour22"
+  min_zoom = 0
+  max_zoom = 20
+  [[maps.layers]]
+  provider_layer = "postgis.hour23"
+  min_zoom = 0
+  max_zoom = 20
+
 
   [[maps.layers]]
   provider_layer = "postgis.polku"
