@@ -13,7 +13,9 @@ class MapViewController: UIViewController {
 	private static let mapURL = URL(string: "mapbox://styles/palikk/ck31fqa9a19se1ctd00qnx31f")
 	private let mapView = MGLMapView(frame: .zero, styleURL: MapViewController.mapURL)
 	
-	var heatmapLayers = [MGLHeatmapStyleLayer]()
+	var monthlyHeatmapLayers = [MGLHeatmapStyleLayer]()
+	var dailyHeatmapLayers = [MGLHeatmapStyleLayer]()
+	var hourlyHeatmapLayers = [MGLHeatmapStyleLayer]()
 	
 	let sliderStepsView = MapFooterView()
 	
@@ -37,10 +39,23 @@ class MapViewController: UIViewController {
 		mapView.setCenter(CLLocationCoordinate2D(latitude: 65.4, longitude: 26.5), zoomLevel: 4.5, animated: false)
 		mapView.delegate = self
 		
-		sliderStepsView.sliderCallback = { [weak self] value in
+		sliderStepsView.timeScaleCallback = { [weak self] segment in
 			guard let self = self else { return }
-			let month = Int((value * 11).rounded())
-			for (index, heatmapLayer) in self.heatmapLayers.enumerated() {
+			
+			(self.monthlyHeatmapLayers + self.dailyHeatmapLayers + self.hourlyHeatmapLayers).forEach {
+				$0.heatmapOpacity = NSExpression(forConstantValue: 0)
+			}
+			
+			if segment != 0 {
+				self.weatherAnnotations.map { $0.1 }.forEach(self.mapView.removeAnnotation)
+			} else {
+				self.weatherAnnotations.filter { $0.0.month == 0 }.map { $0.1 }.forEach(self.mapView.addAnnotation)
+			}
+		}
+		
+		sliderStepsView.monthCallback = { [weak self] month in
+			guard let self = self else { return }
+			for (index, heatmapLayer) in self.monthlyHeatmapLayers.enumerated() {
 				heatmapLayer.heatmapOpacity = NSExpression(forConstantValue: 1 - min(1, abs(Double(month - index))))
 			}
 			
@@ -48,6 +63,20 @@ class MapViewController: UIViewController {
 			
 			for weatherAnnotation in self.weatherAnnotations.filter({ $0.0.month == month }) {
 				self.mapView.addAnnotation(weatherAnnotation.1)
+			}
+		}
+		
+		sliderStepsView.dayCallback = { [weak self] day in
+			guard let self = self else { return }
+			for (index, heatmapLayer) in self.dailyHeatmapLayers.enumerated() {
+				heatmapLayer.heatmapOpacity = NSExpression(forConstantValue: 1 - min(1, abs(Double(day - index))))
+			}
+		}
+		
+		sliderStepsView.hourCallback = { [weak self] hour in
+			guard let self = self else { return }
+			for (index, heatmapLayer) in self.hourlyHeatmapLayers.enumerated() {
+				heatmapLayer.heatmapOpacity = NSExpression(forConstantValue: 1 - min(1, abs(Double(hour - index))))
 			}
 		}
 		
@@ -100,13 +129,13 @@ class MapViewController: UIViewController {
 		style.addLayer(layer)
 	}
 	
-	private func addHeatmapLayers(to style: MGLStyle, source: MGLSource) {
-		heatmapLayers.removeAll()
+	private func addMonthlyHeatmapLayers(to style: MGLStyle, source: MGLSource) {
+		monthlyHeatmapLayers.removeAll()
 		
-		for i in 0...11 {
-			let heatmapLayer = MGLHeatmapStyleLayer(identifier: "heatmap\(i)", source: source)
-			heatmapLayer.sourceLayerIdentifier = "monthly\(i + 1)"
-			heatmapLayer.heatmapOpacity = NSExpression(forConstantValue: i == 0 ? 1 : 0)
+		for i in 1...12 {
+			let heatmapLayer = MGLHeatmapStyleLayer(identifier: "heatmapMonthly\(i)", source: source)
+			heatmapLayer.sourceLayerIdentifier = "monthly\(i)"
+			heatmapLayer.heatmapOpacity = NSExpression(forConstantValue: i == 1 ? 1 : 0)
 			
 			let colors: [NSNumber: UIColor] = [
 				0: .clear,
@@ -133,7 +162,81 @@ class MapViewController: UIViewController {
 			heatmapLayer.heatmapIntensity = NSExpression(format: intensityFormat, intensities)
 			
 			style.addLayer(heatmapLayer)
-			heatmapLayers.append(heatmapLayer)
+			monthlyHeatmapLayers.append(heatmapLayer)
+		}
+	}
+	
+	private func addDailyHeatmapLayers(to style: MGLStyle, source: MGLSource) {
+		dailyHeatmapLayers.removeAll()
+		
+		for i in 0...6 {
+			let heatmapLayer = MGLHeatmapStyleLayer(identifier: "heatmapDaily\(i)", source: source)
+			heatmapLayer.sourceLayerIdentifier = "daily\(i)"
+			heatmapLayer.heatmapOpacity = NSExpression(forConstantValue: 0)
+			
+			let colors: [NSNumber: UIColor] = [
+				0: .clear,
+				0.5: UIColor(red: 0.73, green: 0.23, blue: 0.25, alpha: 0.8),
+				0.95: UIColor.orange.withAlphaComponent(0.8),
+				1: UIColor.yellow.withAlphaComponent(0.8)
+			]
+			let colorFormat = "mgl_interpolate:withCurveType:parameters:stops:($heatmapDensity, 'linear', nil, %@)"
+			heatmapLayer.heatmapColor = NSExpression(format: colorFormat, colors)
+
+			let weights = [
+				0: 0,
+				1000: 0.1,
+				10000: 1
+			]
+			let weightFormat = "mgl_interpolate:withCurveType:parameters:stops:(visits, 'linear', nil, %@)"
+			heatmapLayer.heatmapWeight = NSExpression(format: weightFormat, weights)
+
+			let intensities = [
+				0: 1,
+				9: 3
+			]
+			let intensityFormat = "mgl_interpolate:withCurveType:parameters:stops:($zoomLevel, 'linear', nil, %@)"
+			heatmapLayer.heatmapIntensity = NSExpression(format: intensityFormat, intensities)
+			
+			style.addLayer(heatmapLayer)
+			dailyHeatmapLayers.append(heatmapLayer)
+		}
+	}
+	
+	private func addHourlyHeatmapLayers(to style: MGLStyle, source: MGLSource) {
+		hourlyHeatmapLayers.removeAll()
+		
+		for i in 0...23 {
+			let heatmapLayer = MGLHeatmapStyleLayer(identifier: "heatmapHourly\(i)", source: source)
+			heatmapLayer.sourceLayerIdentifier = "hour\(i)"
+			heatmapLayer.heatmapOpacity = NSExpression(forConstantValue: 0)
+			
+			let colors: [NSNumber: UIColor] = [
+				0: .clear,
+				0.5: UIColor(red: 0.73, green: 0.23, blue: 0.25, alpha: 0.8),
+				0.95: UIColor.orange.withAlphaComponent(0.8),
+				1: UIColor.yellow.withAlphaComponent(0.8)
+			]
+			let colorFormat = "mgl_interpolate:withCurveType:parameters:stops:($heatmapDensity, 'linear', nil, %@)"
+			heatmapLayer.heatmapColor = NSExpression(format: colorFormat, colors)
+				
+			let weights = [
+				0: 0,
+				500: 0.1,
+				5000: 1
+			]
+			let weightFormat = "mgl_interpolate:withCurveType:parameters:stops:(visits, 'linear', nil, %@)"
+			heatmapLayer.heatmapWeight = NSExpression(format: weightFormat, weights)
+
+			let intensities = [
+				0: 1,
+				9: 3
+			]
+			let intensityFormat = "mgl_interpolate:withCurveType:parameters:stops:($zoomLevel, 'linear', nil, %@)"
+			heatmapLayer.heatmapIntensity = NSExpression(format: intensityFormat, intensities)
+			
+			style.addLayer(heatmapLayer)
+			hourlyHeatmapLayers.append(heatmapLayer)
 		}
 	}
 	
@@ -209,7 +312,9 @@ extension MapViewController: MGLMapViewDelegate {
 		style.addSource(source)
 		
 		// addAreaLayer(to: style, source: source)
-		addHeatmapLayers(to: style, source: source)
+		addMonthlyHeatmapLayers(to: style, source: source)
+		addDailyHeatmapLayers(to: style, source: source)
+		addHourlyHeatmapLayers(to: style, source: source)
 		addPathLayer(to: style, source: source)
 		addWeatherAnnotations()
 		

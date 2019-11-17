@@ -13,12 +13,20 @@ class MapFooterView: UIView {
 	let slider = UISlider()
 	let timeScaleControl = UISegmentedControl(items: ["Monthly", "Daily", "Hourly"])
 	
-	var sliderCallback: ((Float) -> Void)?
+	var timeScaleCallback: ((Int) -> Void)?
+	var monthCallback: ((Int) -> Void)?
+	var dayCallback: ((Int) -> Void)?
+	var hourCallback: ((Int) -> Void)?
 	var focusCallback: ((Double, Double, Double) -> Void)?
 	
 	let focusButton1 = BigButton()
 	let focusButton2 = BigButton()
 	var trailingStackView = UIStackView()
+	
+	let monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+	let dayNames = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+	let hours = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11",
+				 "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"]
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -32,6 +40,7 @@ class MapFooterView: UIView {
 		slider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
 		
 		timeScaleControl.selectedSegmentIndex = 0
+		timeScaleControl.addTarget(self, action: #selector(timeScaleChanged), for: .valueChanged)
 		
 		focusButton1.setTitle("Pallas", for: .normal)
 		focusButton2.setTitle("Nuuksio", for: .normal)
@@ -84,15 +93,34 @@ class MapFooterView: UIView {
 			focusButton2.heightAnchor.constraint(equalTo: timeScaleControl.heightAnchor),
 		])
 		
-		let monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+		setupSliderSteps()
+	}
+	
+	required init?(coder: NSCoder) { fatalError() }
+	
+	private func setupSliderSteps() {
+		let count: Int
+		let values: [String]
+		switch timeScaleControl.selectedSegmentIndex {
+		case 0:
+			count = 12
+			values = monthNames
+		case 1:
+			count = 7
+			values = dayNames
+		default:
+			count = 24
+			values = hours
+		}
 		
-		for i in 0...11 {
+		sliderContainer.subviews.forEach { $0.removeFromSuperview() }
+		for i in 0..<count {
 			let line = UIView()
 			line.backgroundColor = .lightGray
 			
 			let label = UILabel()
 			label.font = .boldSystemFont(ofSize: 17)
-			label.text = monthNames[i]
+			label.text = values[i]
 			
 			[line, label].forEach {
 				$0.translatesAutoresizingMaskIntoConstraints = false
@@ -115,16 +143,27 @@ class MapFooterView: UIView {
 				relatedBy: .equal,
 				toItem: sliderContainer,
 				attribute: .trailing,
-				multiplier: max(0.001, CGFloat(i) * CGFloat(1.0/11)),
+				multiplier: max(0.001, CGFloat(i) * 1.0 / CGFloat(count - 1)),
 				constant: 0
 			).isActive = true
 		}
 	}
 	
-	required init?(coder: NSCoder) { fatalError() }
+	@objc private func timeScaleChanged(_ control: UISegmentedControl) {
+		timeScaleCallback?(control.selectedSegmentIndex)
+		slider.value = 0
+		sliderValueChanged(slider)
+		setupSliderSteps()
+	}
 	
 	@objc private func sliderValueChanged(_ slider: UISlider) {
-		sliderCallback?(slider.value)
+		if timeScaleControl.selectedSegmentIndex == 0 {
+			monthCallback?(Int((slider.value * 11).rounded()))
+		} else if timeScaleControl.selectedSegmentIndex == 1 {
+			dayCallback?(Int((slider.value * 6).rounded()))
+		} else if timeScaleControl.selectedSegmentIndex == 2 {
+			hourCallback?(Int((slider.value * 23).rounded()))
+		}
 	}
 	
 	@objc private func focusButtonPressed(_ sender: UIButton) {

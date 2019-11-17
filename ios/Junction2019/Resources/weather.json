@@ -222,6 +222,26 @@
         }
     }, {
         "properties": {
+            "tempsd": "22.3",
+            "prep": "rrmon",
+            "month": "11"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [67.95829, 23.68449]
+        }
+    }, {
+        "properties": {
+            "tempsd": "-2.9",
+            "prep": "tmon",
+            "month": "11"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [67.95829, 23.68449]
+        }
+    }, {
+        "properties": {
             "tempsd": "49.3",
             "prep": "rrmon",
             "month": "12"
@@ -425,6 +445,36 @@
             "tempsd": "94.2",
             "prep": "rrmon",
             "month": "10"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [60.3267, 24.95675]
+        }
+    }, {
+        "properties": {
+            "tempsd": "9.7",
+            "prep": "tmon",
+            "month": "10"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [60.3267, 24.95675]
+        }
+    }, {
+        "properties": {
+            "tempsd": "88.1",
+            "prep": "rrmon",
+            "month": "11"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [60.3267, 24.95675]
+        }
+    }, {
+        "properties": {
+            "tempsd": "7.4",
+            "prep": "tmon",
+            "month": "11"
         },
         "geometry": {
             "type": "Point",
