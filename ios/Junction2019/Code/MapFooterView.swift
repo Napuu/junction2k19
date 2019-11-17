@@ -42,6 +42,7 @@ class MapFooterView: UIView {
 		effectView.isUserInteractionEnabled = true
 		
 		slider.setThumbImage(UIImage(named: "knob"), for: .normal)
+		slider.tintColor = .black
 		slider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
 		
 		timeScaleControl.selectedSegmentIndex = 0
