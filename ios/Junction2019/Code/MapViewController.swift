@@ -91,6 +91,24 @@ class MapViewController: UIViewController {
 			self.mapView.setCenter(CLLocationCoordinate2D(latitude: lat, longitude: lon), zoomLevel: zoom, animated: true)
 		}
 		
+		sliderStepsView.animalSwitchCallback = { [weak self] isOn in
+			guard let self = self else { return }
+			if isOn { self.addAnimalAnnotations() }
+			else {
+				self.animalAnnotations.forEach { self.mapView.removeAnnotation($0.1) }
+				self.animalAnnotations.removeAll()
+			}
+		}
+		
+		sliderStepsView.weatherSwitchCallback = { [weak self] isOn in
+			guard let self = self else { return }
+			if isOn { self.addWeatherAnnotations() }
+			else { self.weatherAnnotations.forEach {
+				self.mapView.removeAnnotation($0.1) }
+				self.weatherAnnotations.removeAll()
+			}
+		}
+		
 		[activityIndicator, mapView, sliderStepsView].forEach {
 			$0.translatesAutoresizingMaskIntoConstraints = false
 			view.addSubview($0)
@@ -301,6 +319,7 @@ class MapViewController: UIViewController {
 		
 		combined = combined.filter { $0.temperature != nil && $0.rain != nil }
 		
+		weatherAnnotations.forEach { mapView.removeAnnotation($0.1) }
 		weatherAnnotations.removeAll()
 		for weatherPoint in combined {
 			let annotation = MGLPointFeature()
@@ -313,6 +332,9 @@ class MapViewController: UIViewController {
 	}
 	
 	private func addAnimalAnnotations() {
+		animalAnnotations.forEach { mapView.removeAnnotation($0.1) }
+		animalAnnotations.removeAll()
+		
 		for animal in animalLocations {
 			for (lat, lon) in animal.1 {
 				let annotation = MGLPointFeature()
@@ -338,8 +360,6 @@ extension MapViewController: MGLMapViewDelegate {
 		addDailyHeatmapLayers(to: style, source: source)
 		addHourlyHeatmapLayers(to: style, source: source)
 		addPathLayer(to: style, source: source)
-		addWeatherAnnotations()
-		addAnimalAnnotations()
 		
 		UIView.animate(withDuration: 0.4) {
 			self.mapView.alpha = 1

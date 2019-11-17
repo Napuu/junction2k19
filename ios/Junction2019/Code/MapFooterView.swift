@@ -18,6 +18,11 @@ class MapFooterView: UIView {
 	var dayCallback: ((Int) -> Void)?
 	var hourCallback: ((Int) -> Void)?
 	var focusCallback: ((Double, Double, Double) -> Void)?
+	var animalSwitchCallback: ((Bool) -> Void)?
+	var weatherSwitchCallback: ((Bool) -> Void)?
+	
+	let animalSwitch = UISwitch()
+	let weatherSwitch = UISwitch()
 	
 	let focusButton1 = BigButton()
 	let focusButton2 = BigButton()
@@ -42,6 +47,18 @@ class MapFooterView: UIView {
 		timeScaleControl.selectedSegmentIndex = 0
 		timeScaleControl.addTarget(self, action: #selector(timeScaleChanged), for: .valueChanged)
 		
+		animalSwitch.onTintColor = .black
+		if let image = UIImage(named: "animalKnob") {
+			animalSwitch.thumbTintColor = UIColor(patternImage: image)
+		}
+		animalSwitch.addTarget(self, action: #selector(animalSwitchChanged), for: .valueChanged)
+		
+		weatherSwitch.onTintColor = .black
+		if let image = UIImage(named: "weatherKnob") {
+			weatherSwitch.thumbTintColor = UIColor(patternImage: image)
+		}
+		weatherSwitch.addTarget(self, action: #selector(weatherSwitchChanged), for: .valueChanged)
+		
 		focusButton1.setTitle("Pallas", for: .normal)
 		focusButton2.setTitle("Nuuksio", for: .normal)
 		
@@ -62,7 +79,7 @@ class MapFooterView: UIView {
 		sliderContainer.translatesAutoresizingMaskIntoConstraints = false
 		effectView.contentView.addSubview(sliderContainer)
 		
-		[slider, timeScaleControl, trailingStackView].forEach {
+		[slider, timeScaleControl, animalSwitch, weatherSwitch, trailingStackView].forEach {
 			$0.translatesAutoresizingMaskIntoConstraints = false
 			effectView.contentView.addSubview($0)
 		}
@@ -85,6 +102,12 @@ class MapFooterView: UIView {
 			timeScaleControl.topAnchor.constraint(equalTo: sliderContainer.bottomAnchor, constant: 32),
 			timeScaleControl.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor),
 			timeScaleControl.heightAnchor.constraint(equalToConstant: 32),
+			
+			animalSwitch.centerYAnchor.constraint(equalTo: timeScaleControl.centerYAnchor),
+			animalSwitch.leadingAnchor.constraint(equalTo: slider.leadingAnchor),
+			
+			weatherSwitch.centerYAnchor.constraint(equalTo: animalSwitch.centerYAnchor),
+			weatherSwitch.leadingAnchor.constraint(equalTo: animalSwitch.trailingAnchor, constant: 32),
 			
 			trailingStackView.centerYAnchor.constraint(equalTo: timeScaleControl.centerYAnchor),
 			trailingStackView.trailingAnchor.constraint(equalTo: slider.trailingAnchor),
@@ -172,5 +195,13 @@ class MapFooterView: UIView {
 		} else if sender == focusButton2 {
 			focusCallback?(60.3, 24.5, 11)
 		}
+	}
+	
+	@objc private func animalSwitchChanged(_ sender: UISwitch) {
+		animalSwitchCallback?(sender.isOn)
+	}
+	
+	@objc private func weatherSwitchChanged(_ sender: UISwitch) {
+		weatherSwitchCallback?(sender.isOn)
 	}
 }
