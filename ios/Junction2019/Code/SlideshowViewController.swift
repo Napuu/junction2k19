@@ -14,10 +14,8 @@ class SlideshowViewController: UIViewController {
 	let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
 	
 	let firstViewController = WelcomeViewController()
-	let secondViewController = WelcomeViewController()
-	let thirdViewController = WelcomeViewController()
-	
-	let mapButton = BigButton()
+	let secondViewController = VisitorsIntroViewController()
+	let thirdViewController = AnimalsIntroViewController()
 	
 	var allViewControllers: [SlideshowContentViewController] {
 		return [firstViewController, secondViewController, thirdViewController]
@@ -37,14 +35,8 @@ class SlideshowViewController: UIViewController {
 			}
 		}
 		
-		mapButton.backgroundColor = .white
-		mapButton.setTitleColor(.black, for: .normal)
-		mapButton.setTitle("Get started", for: .normal)
-		mapButton.titleLabel?.font = .boldSystemFont(ofSize: 17)
-		mapButton.addTarget(self, action: #selector(mapButtonPressed), for: .touchUpInside)
-		
 		let pageView: UIView = pageViewController.view
-		[backgroundView, effectView, pageView, mapButton].forEach {
+		[backgroundView, effectView, pageView].forEach {
 			$0.translatesAutoresizingMaskIntoConstraints = false
 			view.addSubview($0)
 		}
@@ -62,10 +54,7 @@ class SlideshowViewController: UIViewController {
 			pageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
 			pageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
 			pageView.topAnchor.constraint(equalTo: view.topAnchor),
-			pageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-			
-			mapButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-			mapButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100)
+			pageView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
 		])
 	}
 	
@@ -82,11 +71,6 @@ class SlideshowViewController: UIViewController {
 			viewController.parallaxFactor = offset / width
 		}
 	}
-	
-	@objc private func mapButtonPressed() {
-		let window = UIApplication.shared.windows.filter { $0.isKeyWindow }.first
-		window?.rootViewController = MapViewController()
-	}
 }
 
 extension SlideshowViewController: UIPageViewControllerDataSource {
@@ -98,9 +82,9 @@ extension SlideshowViewController: UIPageViewControllerDataSource {
 		}
 		
 		let count = allViewControllers.count
-		var newIndex = index + offset
-		while newIndex < 0 { newIndex += count }
-		while newIndex >= count { newIndex -= count }
+		let newIndex = index + offset
+		if newIndex < 0 { return nil }
+		if newIndex >= count { return nil }
 		return allViewControllers[newIndex]
 	}
 	

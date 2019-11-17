@@ -8,19 +8,18 @@
 
 import UIKit
 
-class WelcomeViewController: SlideshowContentViewController {
+class VisitorsIntroViewController: SlideshowContentViewController {
 	let titleLabel = UILabel()
 	let subtitleStackView = UIStackView()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		titleLabel.text = "ADVENTURE AVAILABLE"
+		titleLabel.text = "Find the best time to travel"
 		let subtitleTexts = [
-			"ADVENTURE A finds the best natural parks for you.",
-			"Want to go hiking in peace to a remote path?",
-			"Want to see some cool wild animals?",
-			"Find the top locations for everything!"
+			"Prefer a peaceful walk in the nature",
+			"over a popular tourist location?",
+			"The simple heatmap lets you easily find those spots."
 		]
 		
 		titleLabel.font = .boldSystemFont(ofSize: 40)
