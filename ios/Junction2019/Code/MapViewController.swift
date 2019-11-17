@@ -177,7 +177,7 @@ class MapViewController: UIViewController {
 				
 			let weights = [
 				0: 0,
-				1000: 0.1,
+				2500: 0.5,
 				20000: 1
 			]
 			let weightFormat = "mgl_interpolate:withCurveType:parameters:stops:(visits, 'linear', nil, %@)"
@@ -214,8 +214,8 @@ class MapViewController: UIViewController {
 
 			let weights = [
 				0: 0,
-				1000: 0.1,
-				10000: 1
+				400: 0.5,
+				6000: 1
 			]
 			let weightFormat = "mgl_interpolate:withCurveType:parameters:stops:(visits, 'linear', nil, %@)"
 			heatmapLayer.heatmapWeight = NSExpression(format: weightFormat, weights)
@@ -250,9 +250,9 @@ class MapViewController: UIViewController {
 			heatmapLayer.heatmapColor = NSExpression(format: colorFormat, colors)
 				
 			let weights = [
-				0: 0,
-				500: 0.1,
-				5000: 1
+				4: 0,
+				15: 0.5,
+				80: 1
 			]
 			let weightFormat = "mgl_interpolate:withCurveType:parameters:stops:(visits, 'linear', nil, %@)"
 			heatmapLayer.heatmapWeight = NSExpression(format: weightFormat, weights)
