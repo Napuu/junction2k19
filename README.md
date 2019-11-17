@@ -13,4 +13,10 @@ Adventure Available – distribute people, enable nature
 
 ----
 
+Technology stack consisting of a native iOS app with [the Mapbox iOS SDK](https://docs.mapbox.com/ios/maps/overview/), [Tegola vector tile server](https://tegola.io/) and [PostgreSQL/PostGIS-database](https://www.postgresql.org/) holding geospatial datasets that we were provided with or that we gathered ourselves. The vector tile server was hosted in [Microsoft Azure](https://azure.microsoft.com/en-us/) and the database made use of [Aiven DBaaS-solutions](https://aiven.io/). 
+
+Open data was gathered from [Finnish Meteorology Institute](https://ilmatieteenlaitos.fi/) and [Finnish Biodiversity Info Facility](laji.fi).
+
+----
+
 Made by [@Napuu](https://github.com/Napuu), [@JaanTaponen](https://github.com/JaanTaponen), [@TumppiHA](https://github.com/TumppiHA), [@htunk](https://github.com/htunk) and [@ootsamo](https://github.com/ootsamo) at Junction 2019
