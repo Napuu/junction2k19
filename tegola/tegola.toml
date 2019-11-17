@@ -113,37 +113,37 @@ max_connections = 150
   name = "daily1"
   geometry_fieldname = "geom"
   id_fieldname = "ogc_fid"
-  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.daily_visits_3 WHERE day = 0 AND geom && !BBOX!"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.daily_visits_3 WHERE day = 1 AND geom && !BBOX!"
 
   [[providers.layers]]
   name = "daily2"
   geometry_fieldname = "geom"
   id_fieldname = "ogc_fid"
-  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.daily_visits_3 WHERE day = 0 AND geom && !BBOX!"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.daily_visits_3 WHERE day = 2 AND geom && !BBOX!"
 
   [[providers.layers]]
   name = "daily3"
   geometry_fieldname = "geom"
   id_fieldname = "ogc_fid"
-  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.daily_visits_3 WHERE day = 0 AND geom && !BBOX!"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.daily_visits_3 WHERE day = 3 AND geom && !BBOX!"
 
   [[providers.layers]]
   name = "daily4"
   geometry_fieldname = "geom"
   id_fieldname = "ogc_fid"
-  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.daily_visits_3 WHERE day = 0 AND geom && !BBOX!"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.daily_visits_3 WHERE day = 4 AND geom && !BBOX!"
 
   [[providers.layers]]
   name = "daily5"
   geometry_fieldname = "geom"
   id_fieldname = "ogc_fid"
-  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.daily_visits_3 WHERE day = 0 AND geom && !BBOX!"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.daily_visits_3 WHERE day = 5 AND geom && !BBOX!"
 
   [[providers.layers]]
   name = "daily6"
   geometry_fieldname = "geom"
   id_fieldname = "ogc_fid"
-  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.daily_visits_3 WHERE day = 0 AND geom && !BBOX!"
+  sql = "SELECT ST_AsBinary(geom) AS geom, visits, ogc_fid FROM public.daily_visits_3 WHERE day = 6 AND geom && !BBOX!"
 
 
   [[providers.layers]]
