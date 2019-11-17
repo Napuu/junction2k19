@@ -19,6 +19,8 @@ class MapViewController: UIViewController {
 	
 	let sliderStepsView = MapFooterView()
 	
+	let activityIndicator = UIActivityIndicatorView(style: .large)
+	
 	struct WeatherPoint {
 		enum Location {
 			case pallas
@@ -32,12 +34,16 @@ class MapViewController: UIViewController {
 	}
 	
 	var weatherAnnotations = [(WeatherPoint, MGLAnnotation)]()
+	var animalAnnotations = [(String, MGLAnnotation)]()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-	
+		
+		view.backgroundColor = UIColor(red: 118/255.0, green: 206/255.0, blue: 240/255.0, alpha: 1)
+		
 		mapView.setCenter(CLLocationCoordinate2D(latitude: 65.4, longitude: 26.5), zoomLevel: 4.5, animated: false)
 		mapView.delegate = self
+		mapView.alpha = 0
 		
 		sliderStepsView.timeScaleCallback = { [weak self] segment in
 			guard let self = self else { return }
@@ -85,12 +91,15 @@ class MapViewController: UIViewController {
 			self.mapView.setCenter(CLLocationCoordinate2D(latitude: lat, longitude: lon), zoomLevel: zoom, animated: true)
 		}
 		
-		[mapView, sliderStepsView].forEach {
+		[activityIndicator, mapView, sliderStepsView].forEach {
 			$0.translatesAutoresizingMaskIntoConstraints = false
 			view.addSubview($0)
 		}
 		
 		NSLayoutConstraint.activate([
+			activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+			activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+			
 			mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
 			mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
 			mapView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -106,6 +115,8 @@ class MapViewController: UIViewController {
 			singleTap.require(toFail: recognizer)
 		}
 		mapView.addGestureRecognizer(singleTap)
+		
+		activityIndicator.startAnimating()
 	}
 	
 	@objc private func handleMapTap(sender: UITapGestureRecognizer) {
@@ -300,6 +311,17 @@ class MapViewController: UIViewController {
 		
 		weatherAnnotations.filter { $0.0.month == 0 }.map { $0.1 }.forEach(mapView.addAnnotation)
 	}
+	
+	private func addAnimalAnnotations() {
+		for animal in animalLocations {
+			for (lat, lon) in animal.1 {
+				let annotation = MGLPointFeature()
+				annotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+				animalAnnotations.append((animal.0, annotation))
+				mapView.addAnnotation(annotation)
+			}
+		}
+	}
 }
 
 extension MapViewController: MGLMapViewDelegate {
@@ -317,10 +339,12 @@ extension MapViewController: MGLMapViewDelegate {
 		addHourlyHeatmapLayers(to: style, source: source)
 		addPathLayer(to: style, source: source)
 		addWeatherAnnotations()
+		addAnimalAnnotations()
 		
-		let annotation = MGLPointFeature()
-		annotation.coordinate = CLLocationCoordinate2D(latitude: 65.4, longitude: 26.5)
-		mapView.addAnnotation(annotation)
+		UIView.animate(withDuration: 0.4) {
+			self.mapView.alpha = 1
+		}
+		activityIndicator.stopAnimating()
 	}
 	
 	func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
@@ -332,15 +356,16 @@ extension MapViewController: MGLMapViewDelegate {
 	}
 	
 	func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
-		guard let weatherAnnotation = weatherAnnotations.first(where: { $0.1 === annotation }) else { return nil }
-		let weatherView = WeatherView(frame: CGRect(x: 0, y: 0, width: 105, height: 58))
-		weatherView.setRain(weatherAnnotation.0.rain ?? 0)
-		weatherView.setTemperature(weatherAnnotation.0.temperature ?? 0)
-		return weatherView
-	}
-	
-	func mapView(_ mapView: MGLMapView, imageFor annotation: MGLAnnotation) -> MGLAnnotationImage? {
-		let image = MGLAnnotationImage(image: UIImage(named: "reindeer")!, reuseIdentifier: "reindeer")
-		return image
+		if let weatherAnnotation = weatherAnnotations.first(where: { $0.1 === annotation }) {
+			let weatherView = WeatherView(frame: CGRect(x: 0, y: 0, width: 105, height: 58))
+			weatherView.setRain(weatherAnnotation.0.rain ?? 0)
+			weatherView.setTemperature(weatherAnnotation.0.temperature ?? 0)
+			return weatherView
+		} else if let animalAnnotation = animalAnnotations.first(where: { $0.1 === annotation }) {
+			let animalView = AnimalView(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
+			animalView.imageView.image = UIImage(named: animalAnnotation.0)
+			return animalView
+		}
+		return nil
 	}
 }
