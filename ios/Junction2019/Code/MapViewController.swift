@@ -17,6 +17,20 @@ class MapViewController: UIViewController {
 	
 	let sliderStepsView = MapFooterView()
 	
+	struct WeatherPoint {
+		enum Location {
+			case pallas
+			case nuuksio
+		}
+		
+		let location: Location
+		let month: Int
+		var temperature: Int?
+		var rain: Int?
+	}
+	
+	var weatherAnnotations = [(WeatherPoint, MGLAnnotation)]()
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 	
@@ -28,6 +42,12 @@ class MapViewController: UIViewController {
 			let month = Int((value * 11).rounded())
 			for (index, heatmapLayer) in self.heatmapLayers.enumerated() {
 				heatmapLayer.heatmapOpacity = NSExpression(forConstantValue: 1 - min(1, abs(Double(month - index))))
+			}
+			
+			self.weatherAnnotations.map { $0.1 }.forEach(self.mapView.removeAnnotation)
+			
+			for weatherAnnotation in self.weatherAnnotations.filter({ $0.0.month == month }) {
+				self.mapView.addAnnotation(weatherAnnotation.1)
 			}
 		}
 		
@@ -124,6 +144,59 @@ class MapViewController: UIViewController {
 		layer.lineColor = NSExpression(forConstantValue: UIColor.red)
 		style.addLayer(layer)
 	}
+	
+	private func addWeatherAnnotations() {
+		guard let url = Bundle.main.url(forResource: "weather", withExtension: "json"),
+			let data = try? Data(contentsOf: url),
+			let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+			let entries = json["features"] as? [[String: Any]] else {
+				return
+		}
+		
+		let mapped = entries.compactMap { entry -> WeatherPoint? in
+			guard let properties = entry["properties"] as? [String: Any],
+				let geometry = entry["geometry"] as? [String: Any] else {
+					return nil
+			}
+			
+			let location: WeatherPoint.Location = (geometry["coordinates"] as? [Double])?.first.map { $0 > 65 } == true ? .pallas : .nuuksio
+			guard let month = (properties["month"] as? String).flatMap(Int.init) else { return nil }
+			var weatherPoint = WeatherPoint(location: location, month: month - 1, temperature: nil, rain: nil)
+			
+			if properties["prep"] as? String == "tmon", let temp = (properties["tempsd"] as? String).flatMap(Double.init) {
+				weatherPoint.temperature = Int(temp)
+			} else if properties["prep"] as? String == "rrmon", let rain = (properties["tempsd"] as? String).flatMap(Double.init) {
+				weatherPoint.rain = Int(rain)
+			} else { return nil }
+			
+			return weatherPoint
+		}
+		
+		var combined = [WeatherPoint]()
+		mapped.forEach { next in
+			if let index = combined.firstIndex(where: { $0.location == next.location && $0.month == next.month }) {
+				if combined[index].temperature == nil {
+					combined[index].temperature = next.temperature
+				} else if combined[index].rain == nil {
+					combined[index].rain = next.rain
+				}
+			} else {
+				combined.append(next)
+			}
+		}
+		
+		combined = combined.filter { $0.temperature != nil && $0.rain != nil }
+		
+		weatherAnnotations.removeAll()
+		for weatherPoint in combined {
+			let annotation = MGLPointFeature()
+			let (lat, lon) = weatherPoint.location == .pallas ? (67.67, 24.47) : (60.28, 24.49)
+			annotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+			weatherAnnotations.append((weatherPoint, annotation))
+		}
+		
+		weatherAnnotations.filter { $0.0.month == 0 }.map { $0.1 }.forEach(mapView.addAnnotation)
+	}
 }
 
 extension MapViewController: MGLMapViewDelegate {
@@ -138,6 +211,7 @@ extension MapViewController: MGLMapViewDelegate {
 		// addAreaLayer(to: style, source: source)
 		addHeatmapLayers(to: style, source: source)
 		addPathLayer(to: style, source: source)
+		addWeatherAnnotations()
 		
 		let annotation = MGLPointFeature()
 		annotation.coordinate = CLLocationCoordinate2D(latitude: 65.4, longitude: 26.5)
@@ -153,7 +227,11 @@ extension MapViewController: MGLMapViewDelegate {
 	}
 	
 	func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
-		return WeatherView(frame: CGRect(x: 0, y: 0, width: 96, height: 58))
+		guard let weatherAnnotation = weatherAnnotations.first(where: { $0.1 === annotation }) else { return nil }
+		let weatherView = WeatherView(frame: CGRect(x: 0, y: 0, width: 105, height: 58))
+		weatherView.setRain(weatherAnnotation.0.rain ?? 0)
+		weatherView.setTemperature(weatherAnnotation.0.temperature ?? 0)
+		return weatherView
 	}
 	
 	func mapView(_ mapView: MGLMapView, imageFor annotation: MGLAnnotation) -> MGLAnnotationImage? {

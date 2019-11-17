@@ -1,0 +1,434 @@
+{
+    "type": "FeatureCollection",
+    "features": [{
+        "properties": {
+            "tempsd": "43.0",
+            "prep": "rrmon",
+            "month": "12"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [67.95829, 23.68449]
+        }
+    }, {
+        "properties": {
+            "tempsd": "-10.4",
+            "prep": "tmon",
+            "month": "12"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [67.95829, 23.68449]
+        }
+    }, {
+        "properties": {
+            "tempsd": "17.3",
+            "prep": "rrmon",
+            "month": "01"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [67.95829, 23.68449]
+        }
+    }, {
+        "properties": {
+            "tempsd": "-18.1",
+            "prep": "tmon",
+            "month": "01"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [67.95829, 23.68449]
+        }
+    }, {
+        "properties": {
+            "tempsd": "25.3",
+            "prep": "rrmon",
+            "month": "02"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [67.95829, 23.68449]
+        }
+    }, {
+        "properties": {
+            "tempsd": "-13.5",
+            "prep": "tmon",
+            "month": "02"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [67.95829, 23.68449]
+        }
+    }, {
+        "properties": {
+            "tempsd": "27.6",
+            "prep": "rrmon",
+            "month": "03"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [67.95829, 23.68449]
+        }
+    }, {
+        "properties": {
+            "tempsd": "-8.3",
+            "prep": "tmon",
+            "month": "03"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [67.95829, 23.68449]
+        }
+    }, {
+        "properties": {
+            "tempsd": "7.9",
+            "prep": "rrmon",
+            "month": "04"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [67.95829, 23.68449]
+        }
+    }, {
+        "properties": {
+            "tempsd": "1.6",
+            "prep": "tmon",
+            "month": "04"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [67.95829, 23.68449]
+        }
+    }, {
+        "properties": {
+            "tempsd": "66.5",
+            "prep": "rrmon",
+            "month": "05"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [67.95829, 23.68449]
+        }
+    }, {
+        "properties": {
+            "tempsd": "5.5",
+            "prep": "tmon",
+            "month": "05"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [67.95829, 23.68449]
+        }
+    }, {
+        "properties": {
+            "tempsd": "71.7",
+            "prep": "rrmon",
+            "month": "06"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [67.95829, 23.68449]
+        }
+    }, {
+        "properties": {
+            "tempsd": "11.6",
+            "prep": "tmon",
+            "month": "06"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [67.95829, 23.68449]
+        }
+    }, {
+        "properties": {
+            "tempsd": "24.0",
+            "prep": "rrmon",
+            "month": "07"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [67.95829, 23.68449]
+        }
+    }, {
+        "properties": {
+            "tempsd": "13.8",
+            "prep": "tmon",
+            "month": "07"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [67.95829, 23.68449]
+        }
+    }, {
+        "properties": {
+            "tempsd": "39.3",
+            "prep": "rrmon",
+            "month": "08"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [67.95829, 23.68449]
+        }
+    }, {
+        "properties": {
+            "tempsd": "12.6",
+            "prep": "tmon",
+            "month": "08"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [67.95829, 23.68449]
+        }
+    }, {
+        "properties": {
+            "tempsd": "71.0",
+            "prep": "rrmon",
+            "month": "09"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [67.95829, 23.68449]
+        }
+    }, {
+        "properties": {
+            "tempsd": "6.5",
+            "prep": "tmon",
+            "month": "09"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [67.95829, 23.68449]
+        }
+    }, {
+        "properties": {
+            "tempsd": "29.6",
+            "prep": "rrmon",
+            "month": "10"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [67.95829, 23.68449]
+        }
+    }, {
+        "properties": {
+            "tempsd": "-3.7",
+            "prep": "tmon",
+            "month": "10"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [67.95829, 23.68449]
+        }
+    }, {
+        "properties": {
+            "tempsd": "49.3",
+            "prep": "rrmon",
+            "month": "12"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [60.3267, 24.95675]
+        }
+    }, {
+        "properties": {
+            "tempsd": "-2.0",
+            "prep": "tmon",
+            "month": "12"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [60.3267, 24.95675]
+        }
+    }, {
+        "properties": {
+            "tempsd": "60.2",
+            "prep": "rrmon",
+            "month": "01"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [60.3267, 24.95675]
+        }
+    }, {
+        "properties": {
+            "tempsd": "-6.2",
+            "prep": "tmon",
+            "month": "01"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [60.3267, 24.95675]
+        }
+    }, {
+        "properties": {
+            "tempsd": "57.6",
+            "prep": "rrmon",
+            "month": "02"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [60.3267, 24.95675]
+        }
+    }, {
+        "properties": {
+            "tempsd": "-0.5",
+            "prep": "tmon",
+            "month": "02"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [60.3267, 24.95675]
+        }
+    }, {
+        "properties": {
+            "tempsd": "60.9",
+            "prep": "rrmon",
+            "month": "03"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [60.3267, 24.95675]
+        }
+    }, {
+        "properties": {
+            "tempsd": "-0.3",
+            "prep": "tmon",
+            "month": "03"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [60.3267, 24.95675]
+        }
+    }, {
+        "properties": {
+            "tempsd": "6.1",
+            "prep": "rrmon",
+            "month": "04"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [60.3267, 24.95675]
+        }
+    }, {
+        "properties": {
+            "tempsd": "6.8",
+            "prep": "tmon",
+            "month": "04"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [60.3267, 24.95675]
+        }
+    }, {
+        "properties": {
+            "tempsd": "64.4",
+            "prep": "rrmon",
+            "month": "05"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [60.3267, 24.95675]
+        }
+    }, {
+        "properties": {
+            "tempsd": "10.6",
+            "prep": "tmon",
+            "month": "05"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [60.3267, 24.95675]
+        }
+    }, {
+        "properties": {
+            "tempsd": "15.9",
+            "prep": "rrmon",
+            "month": "06"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [60.3267, 24.95675]
+        }
+    }, {
+        "properties": {
+            "tempsd": "17.9",
+            "prep": "tmon",
+            "month": "06"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [60.3267, 24.95675]
+        }
+    }, {
+        "properties": {
+            "tempsd": "66.9",
+            "prep": "rrmon",
+            "month": "07"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [60.3267, 24.95675]
+        }
+    }, {
+        "properties": {
+            "tempsd": "17.5",
+            "prep": "tmon",
+            "month": "07"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [60.3267, 24.95675]
+        }
+    }, {
+        "properties": {
+            "tempsd": "105.5",
+            "prep": "rrmon",
+            "month": "08"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [60.3267, 24.95675]
+        }
+    }, {
+        "properties": {
+            "tempsd": "16.8",
+            "prep": "tmon",
+            "month": "08"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [60.3267, 24.95675]
+        }
+    }, {
+        "properties": {
+            "tempsd": "100.9",
+            "prep": "rrmon",
+            "month": "09"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [60.3267, 24.95675]
+        }
+    }, {
+        "properties": {
+            "tempsd": "11.3",
+            "prep": "tmon",
+            "month": "09"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [60.3267, 24.95675]
+        }
+    }, {
+        "properties": {
+            "tempsd": "94.2",
+            "prep": "rrmon",
+            "month": "10"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [60.3267, 24.95675]
+        }
+    }]
+}

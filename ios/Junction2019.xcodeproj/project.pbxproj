@@ -17,6 +17,7 @@
 		274C85B0238006C200BEF7EB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274C85AF238006C200BEF7EB /* MapViewController.swift */; };
 		274C85B2238066A900BEF7EB /* MapFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274C85B1238066A900BEF7EB /* MapFooterView.swift */; };
 		274C85B42380A1BE00BEF7EB /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274C85B32380A1BE00BEF7EB /* WeatherView.swift */; };
+		274C85B62380BC8500BEF7EB /* weather.json in Resources */ = {isa = PBXBuildFile; fileRef = 274C85B52380BC8500BEF7EB /* weather.json */; };
 		B3FFFD470648E9A6738B9808 /* Pods_Junction2019.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7F1F88984BCE2D7CACEF11B /* Pods_Junction2019.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		274C85AF238006C200BEF7EB /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		274C85B1238066A900BEF7EB /* MapFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFooterView.swift; sourceTree = "<group>"; };
 		274C85B32380A1BE00BEF7EB /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
+		274C85B52380BC8500BEF7EB /* weather.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = weather.json; sourceTree = "<group>"; };
 		C4C4368C8E6832C54025CC56 /* Pods-Junction2019.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Junction2019.release.xcconfig"; path = "Target Support Files/Pods-Junction2019/Pods-Junction2019.release.xcconfig"; sourceTree = "<group>"; };
 		F7F1F88984BCE2D7CACEF11B /* Pods_Junction2019.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Junction2019.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBD0A5EA91AAE7D8E47B41FC /* Pods-Junction2019.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Junction2019.debug.xcconfig"; path = "Target Support Files/Pods-Junction2019/Pods-Junction2019.debug.xcconfig"; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 		27048BE0237F347100F05ABB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				274C85B52380BC8500BEF7EB /* weather.json */,
 				27048BE1237F347100F05ABB /* LaunchScreen.storyboard */,
 				27048BE2237F347100F05ABB /* Assets.xcassets */,
 				27048BE3237F347100F05ABB /* Info.plist */,
@@ -182,6 +185,7 @@
 			files = (
 				27048BE8237F347100F05ABB /* Assets.xcassets in Resources */,
 				27048BE7237F347100F05ABB /* LaunchScreen.storyboard in Resources */,
+				274C85B62380BC8500BEF7EB /* weather.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
